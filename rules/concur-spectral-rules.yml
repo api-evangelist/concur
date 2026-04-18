@@ -1,0 +1,107 @@
+rules:
+  # INFO / METADATA
+  info-title-required:
+    description: Info title must be present and start with "SAP Concur"
+    given: $.info
+    severity: error
+    then:
+      field: title
+      function: pattern
+      functionOptions:
+        match: "^SAP Concur"
+
+  info-description-required:
+    description: Info description must be present with minimum length
+    given: $.info
+    severity: error
+    then:
+      field: description
+      function: truthy
+
+  # PATHS
+  paths-kebab-case:
+    description: Paths should use kebab-case
+    given: $.paths
+    severity: warn
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: "^/[a-z0-9\\-/{}_]+$"
+
+  # OPERATIONS
+  operation-operationId-required:
+    description: Every operation must have an operationId
+    given: "$.paths[*][get,post,put,patch,delete]"
+    severity: error
+    then:
+      field: operationId
+      function: truthy
+
+  operation-summary-required:
+    description: Every operation must have a summary
+    given: "$.paths[*][get,post,put,patch,delete]"
+    severity: error
+    then:
+      field: summary
+      function: truthy
+
+  operation-summary-prefix:
+    description: Operation summaries should start with "SAP Concur"
+    given: "$.paths[*][get,post,put,patch,delete]"
+    severity: warn
+    then:
+      field: summary
+      function: pattern
+      functionOptions:
+        match: "^SAP Concur"
+
+  operation-tags-required:
+    description: Every operation must have tags
+    given: "$.paths[*][get,post,put,patch,delete]"
+    severity: warn
+    then:
+      field: tags
+      function: truthy
+
+  # PARAMETERS
+  parameter-description-required:
+    description: Every parameter must have a description
+    given: "$.paths[*][get,post,put,patch,delete].parameters[*]"
+    severity: warn
+    then:
+      field: description
+      function: truthy
+
+  # RESPONSES
+  response-success-required:
+    description: Every operation must have a success response
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          anyOf:
+            - required: ["200"]
+            - required: ["201"]
+            - required: ["204"]
+
+  # SECURITY
+  security-global-defined:
+    description: Global security must be defined
+    given: "$"
+    severity: error
+    then:
+      field: security
+      function: truthy
+
+  # SCHEMAS
+  schema-properties-description:
+    description: Schema properties should have descriptions
+    given: "$.components.schemas[*].properties[*]"
+    severity: info
+    then:
+      field: description
+      function: truthy

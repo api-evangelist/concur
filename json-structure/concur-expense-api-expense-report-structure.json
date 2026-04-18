@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/concur/refs/heads/main/json-structure/concur-expense-api-expense-report-structure.json",
+  "name": "ExpenseReport",
+  "description": "An expense report containing expense entries.",
+  "type": "object",
+  "properties": {
+    "reportId": { "type": "string", "description": "Unique identifier for the expense report." },
+    "reportName": { "type": "string", "description": "Name of the expense report." },
+    "ownerName": { "type": "string", "description": "Full name of the report owner." },
+    "businessPurpose": { "type": "string", "description": "Business purpose for the expenses." },
+    "submitDate": { "type": "datetime", "description": "Date the report was submitted." },
+    "approvalStatus": { "type": "string", "enum": ["NOT_SUBMITTED", "SUBMITTED", "APPROVED", "SENT_BACK", "RECALLED"] },
+    "total": { "type": "double", "description": "Total amount of all expenses." },
+    "currencyCode": { "type": "string", "description": "ISO 4217 currency code." },
+    "countryCode": { "type": "string", "description": "ISO country code." },
+    "reportDate": { "type": "date", "description": "Date of the report." }
+  }
+}

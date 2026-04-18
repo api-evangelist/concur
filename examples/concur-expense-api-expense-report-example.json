@@ -1,0 +1,12 @@
+{
+  "reportId": "500123",
+  "reportName": "Q1 Travel Expenses",
+  "ownerName": "Jane Smith",
+  "businessPurpose": "Client meetings in New York",
+  "submitDate": "2026-03-15T14:30:00Z",
+  "approvalStatus": "SUBMITTED",
+  "total": 2450.75,
+  "currencyCode": "USD",
+  "countryCode": "US",
+  "reportDate": "2026-03-15"
+}

@@ -1,0 +1,54 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "SAP Concur Spend Management"
+  description: "Unified spend management workflow combining expense, travel, and invoice APIs for finance teams managing employee spend."
+  tags:
+    - Expense Management
+    - SAP Concur
+    - Spend Management
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      CONCUR_ACCESS_TOKEN: CONCUR_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - import: concur-expense
+      location: ./shared/expense.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: spend-management-api
+      description: "Unified REST API for SAP Concur spend management."
+      resources:
+        - path: /v1/reports
+          name: expense-reports
+          description: "Expense reports"
+          operations:
+            - method: GET
+              name: list-reports
+              description: "List expense reports"
+              call: "concur-expense.get-expense-reports"
+
+    - type: mcp
+      port: 9090
+      namespace: spend-management-mcp
+      transport: http
+      description: "MCP server for AI-assisted spend management."
+      tools:
+        - name: list-expense-reports
+          description: "List expense reports for a user"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "concur-expense.get-expense-reports"
+        - name: create-expense-report
+          description: "Create a new expense report"
+          hints:
+            readOnly: false
+          call: "concur-expense.create-expense-report"

@@ -1,0 +1,70 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "SAP Concur"
+  description: "Vocabulary for SAP Concur spend management APIs covering expense, travel, and invoice domains."
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+operational:
+  apis:
+    - name: Expense API
+      namespace: concur-expense
+      version: "4.0"
+      baseUrl: https://us.api.concursolutions.com/expensereports/v4/
+      status: active
+
+  resources:
+    - name: Expense Reports
+      api: Expense API
+      actions: [list, get, create, update, submit]
+    - name: Expenses
+      api: Expense API
+      actions: [list, get, create, update]
+    - name: Allocations
+      api: Expense API
+      actions: [list, get, create]
+
+  actions:
+    - name: list
+      method: GET
+      pattern: read
+    - name: get
+      method: GET
+      pattern: read
+    - name: create
+      method: POST
+      pattern: write
+    - name: update
+      method: PUT
+      pattern: write
+    - name: submit
+      method: POST
+      pattern: write
+
+  authentication:
+    schemes:
+      - type: OAuth 2.0
+        flow: authorization_code
+
+capability:
+  workflows:
+    - name: Spend Management
+      file: capabilities/spend-management.yaml
+      description: "Unified spend management combining expense and invoice workflows"
+      tools: 2
+      personas: [Finance Team, Approver]
+
+  personas:
+    - id: finance-team
+      name: Finance Team
+      description: "Finance and accounting staff managing expense and invoice processing"
+    - id: approver
+      name: Approver
+      description: "Managers approving expense reports and invoices"
+
+crossReference:
+  - resource: Expense Reports
+    operations: [list-reports, create-expense-report]
+    workflows: [Spend Management]
+    personas: [Finance Team, Approver]

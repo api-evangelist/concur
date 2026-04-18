@@ -1,0 +1,10 @@
+{
+  "expenseId": "600456",
+  "expenseTypeName": "Airfare",
+  "transactionDate": "2026-03-10",
+  "transactionAmount": 875.50,
+  "transactionCurrencyCode": "USD",
+  "vendorName": "United Airlines",
+  "description": "Flight from SFO to JFK",
+  "receiptRequired": true
+}

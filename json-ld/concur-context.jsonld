@@ -1,0 +1,25 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "concur": "https://concur.dev/schema/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "ExpenseReport": "concur:ExpenseReport",
+    "Expense": "concur:Expense",
+    "reportId": { "@id": "concur:reportId", "@type": "xsd:string" },
+    "reportName": { "@id": "schema:name", "@type": "xsd:string" },
+    "ownerName": { "@id": "concur:ownerName", "@type": "xsd:string" },
+    "businessPurpose": { "@id": "concur:businessPurpose", "@type": "xsd:string" },
+    "submitDate": { "@id": "concur:submitDate", "@type": "xsd:dateTime" },
+    "approvalStatus": { "@id": "concur:approvalStatus", "@type": "xsd:string" },
+    "total": { "@id": "concur:total", "@type": "xsd:decimal" },
+    "currencyCode": { "@id": "concur:currencyCode", "@type": "xsd:string" },
+    "expenseId": { "@id": "concur:expenseId", "@type": "xsd:string" },
+    "expenseTypeName": { "@id": "concur:expenseTypeName", "@type": "xsd:string" },
+    "transactionDate": { "@id": "concur:transactionDate", "@type": "xsd:date" },
+    "transactionAmount": { "@id": "concur:transactionAmount", "@type": "xsd:decimal" },
+    "vendorName": { "@id": "concur:vendorName", "@type": "xsd:string" },
+    "description": { "@id": "schema:description", "@type": "xsd:string" },
+    "receiptRequired": { "@id": "concur:receiptRequired", "@type": "xsd:boolean" }
+  }
+}

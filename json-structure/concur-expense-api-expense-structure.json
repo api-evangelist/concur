@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/concur/refs/heads/main/json-structure/concur-expense-api-expense-structure.json",
+  "name": "Expense",
+  "description": "An individual expense entry.",
+  "type": "object",
+  "properties": {
+    "expenseId": { "type": "string", "description": "Unique identifier for the expense entry." },
+    "expenseTypeName": { "type": "string", "description": "Name of the expense type." },
+    "transactionDate": { "type": "date", "description": "Date of the transaction." },
+    "transactionAmount": { "type": "double", "description": "Amount of the transaction." },
+    "transactionCurrencyCode": { "type": "string", "description": "Currency code of the transaction." },
+    "vendorName": { "type": "string", "description": "Name of the vendor." },
+    "description": { "type": "string", "description": "Description of the expense." },
+    "receiptRequired": { "type": "boolean", "description": "Whether a receipt is required." }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/concur/refs/heads/main/json-schema/concur-expense-api-expense-schema.json",
+  "title": "Expense",
+  "description": "An individual expense entry.",
+  "type": "object",
+  "properties": {
+    "expenseId": { "type": "string", "description": "Unique identifier for the expense entry.", "example": "600456" },
+    "expenseTypeName": { "type": "string", "description": "Name of the expense type.", "example": "Airfare" },
+    "transactionDate": { "type": "string", "format": "date", "description": "Date of the transaction." },
+    "transactionAmount": { "type": "number", "format": "double", "description": "Amount of the transaction." },
+    "transactionCurrencyCode": { "type": "string", "description": "Currency code of the transaction." },
+    "vendorName": { "type": "string", "description": "Name of the vendor.", "example": "United Airlines" },
+    "description": { "type": "string", "description": "Description of the expense." },
+    "receiptRequired": { "type": "boolean", "description": "Whether a receipt is required." }
+  }
+}
