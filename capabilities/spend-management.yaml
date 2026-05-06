@@ -1,54 +1,98 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "SAP Concur Spend Management"
-  description: "Unified spend management workflow combining expense, travel, and invoice APIs for finance teams managing employee spend."
+  label: SAP Concur Spend Management
+  description: Unified spend management workflow combining expense, travel, and invoice APIs for finance teams managing employee
+    spend.
   tags:
-    - Expense Management
-    - SAP Concur
-    - Spend Management
-  created: "2026-04-18"
-  modified: "2026-04-18"
-
+  - Expense Management
+  - SAP Concur
+  - Spend Management
+  created: '2026-04-18'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      CONCUR_ACCESS_TOKEN: CONCUR_ACCESS_TOKEN
-
+- namespace: env
+  keys:
+    CONCUR_ACCESS_TOKEN: CONCUR_ACCESS_TOKEN
 capability:
   consumes:
-    - import: concur-expense
-      location: ./shared/expense.yaml
-
+  - type: http
+    namespace: concur-expense
+    baseUri: https://us.api.concursolutions.com
+    description: SAP Concur Expense API v4
+    authentication:
+      type: bearer
+      token: '{{CONCUR_ACCESS_TOKEN}}'
+    resources:
+    - name: expense-reports
+      path: /expensereports/v4
+      description: Expense report management
+      operations:
+      - name: get-expense-reports
+        method: GET
+        description: Get expense reports for a user
+        inputParameters:
+        - name: userId
+          in: path
+          type: string
+          required: true
+          description: User ID
+        - name: contextType
+          in: path
+          type: string
+          required: true
+          description: Context type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-expense-report
+        method: POST
+        description: Create a new expense report
+        inputParameters:
+        - name: userId
+          in: path
+          type: string
+          required: true
+          description: User ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            reportName: '{{tools.reportName}}'
+            currencyCode: '{{tools.currencyCode}}'
   exposes:
-    - type: rest
-      port: 8080
-      namespace: spend-management-api
-      description: "Unified REST API for SAP Concur spend management."
-      resources:
-        - path: /v1/reports
-          name: expense-reports
-          description: "Expense reports"
-          operations:
-            - method: GET
-              name: list-reports
-              description: "List expense reports"
-              call: "concur-expense.get-expense-reports"
-
-    - type: mcp
-      port: 9090
-      namespace: spend-management-mcp
-      transport: http
-      description: "MCP server for AI-assisted spend management."
-      tools:
-        - name: list-expense-reports
-          description: "List expense reports for a user"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "concur-expense.get-expense-reports"
-        - name: create-expense-report
-          description: "Create a new expense report"
-          hints:
-            readOnly: false
-          call: "concur-expense.create-expense-report"
+  - type: rest
+    port: 8080
+    namespace: spend-management-api
+    description: Unified REST API for SAP Concur spend management.
+    resources:
+    - path: /v1/reports
+      name: expense-reports
+      description: Expense reports
+      operations:
+      - method: GET
+        name: list-reports
+        description: List expense reports
+        call: concur-expense.get-expense-reports
+  - type: mcp
+    port: 9090
+    namespace: spend-management-mcp
+    transport: http
+    description: MCP server for AI-assisted spend management.
+    tools:
+    - name: list-expense-reports
+      description: List expense reports for a user
+      hints:
+        readOnly: true
+        openWorld: true
+      call: concur-expense.get-expense-reports
+    - name: create-expense-report
+      description: Create a new expense report
+      hints:
+        readOnly: false
+      call: concur-expense.create-expense-report
