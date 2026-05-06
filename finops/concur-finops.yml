@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,10 +9,11 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: SAP Concur
 providerId: concur
-publisherName: SAP Concur
-serviceCategory: API
+publisherName: SAP Concur Technologies, Inc.
+serviceCategory: Travel & Expense Management
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Expense Management
   - Finance
@@ -19,176 +21,73 @@ tags:
   - SAP
   - Travel
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the SAP Concur API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+description: 'FOCUS-aligned FinOps for SAP Concur: enterprise SaaS subscription where API consumption
+  is bundled with the customer''s SAP Concur (Expense / Travel / Invoice / Request) contract; spend allocation
+  follows the SAP enterprise invoice rather than per-API-call billing.'
+notes: SAP Concur does not publish per-call API pricing; spend rolls up under the customer's enterprise
+  Concur subscription. Meters here describe what consumers should track internally for chargeback even
+  though SAP does not bill per-call externally.
+sources:
+  - https://developer.concur.com/api-reference/
+  - https://www.concur.com/
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Enterprise Subscription
+  billingFrequency: Annual
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
     - Tax
-    - Credit
     - Adjustment
-  chargeFrequency: Recurring
+    - Credit
 focusColumns:
   ServiceName: SAP Concur
-  ServiceCategory: Developer Tools / API
+  ServiceCategory: Travel & Expense Management
   ProviderName: SAP Concur
-  PublisherName: SAP Concur
-  InvoiceIssuerName: SAP Concur
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: SAP Concur Technologies, Inc.
+  InvoiceIssuerName: SAP America, Inc.
   BillingCurrency: USD
-  ChargeCategory: Usage
+  ChargeCategory: Purchase
 meters:
-  - name: api_requests
-    description: Count of billable API requests
+  - name: concur_subscription
+    description: Annual SAP Concur subscription fee (Expense / Travel / Invoice / Request modules)
+    unit: month
+    aggregation: max
+    dimensions:
+      - module
+      - tenant
+  - name: api_calls_internal
+    description: Internal-only meter — count of API calls per consuming application for chargeback within
+      the customer organization. Not billed externally by SAP.
     unit: request
     aggregation: sum
     dimensions:
       - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
-    aggregation: sum
+      - consumer_app
+      - environment
+  - name: active_users
+    description: Per-user (employee) component of the SAP Concur subscription
+    unit: seat
+    aggregation: avg
     dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: SAP Concur Expense API
-    baseURL: https://us.api.concursolutions.com/expensereports/v4/
-    tags:
-      - Expense Reports
-      - Expense Tracking
-      - REST
-      - Spend Management
-    serviceName: SAP Concur Expense API
-    serviceCategory: API
-  - name: SAP Concur Travel API
-    baseURL: https://us.api.concursolutions.com/travel/
-    tags:
-      - Bookings
-      - Itineraries
-      - REST
-      - Travel
-    serviceName: SAP Concur Travel API
-    serviceCategory: API
-  - name: SAP Concur Invoice API
-    baseURL: https://us.api.concursolutions.com/invoice/
-    tags:
-      - Accounts Payable
-      - Invoices
-      - Payments
-      - REST
-    serviceName: SAP Concur Invoice API
-    serviceCategory: API
-  - name: SAP Concur Receipts API
-    baseURL: https://us.api.concursolutions.com/receipts/v4/
-    tags:
-      - Digital Receipts
-      - E-Receipts
-      - REST
-    serviceName: SAP Concur Receipts API
-    serviceCategory: API
-  - name: SAP Concur Request API
-    baseURL: https://us.api.concursolutions.com/travelrequest/v4/
-    tags:
-      - Approvals
-      - REST
-      - Travel Requests
-    serviceName: SAP Concur Request API
-    serviceCategory: API
-  - name: SAP Concur User Provisioning API
-    baseURL: https://us.api.concursolutions.com/provisioning/v4/
-    tags:
-      - Provisioning
-      - REST
-      - SCIM
-      - Users
-    serviceName: SAP Concur User Provisioning API
-    serviceCategory: API
-  - name: SAP Concur Events API
-    baseURL: https://us.api.concursolutions.com/events/v4/
-    tags:
-      - Events
-      - REST
-      - Subscriptions
-      - Webhooks
-    serviceName: SAP Concur Events API
-    serviceCategory: API
-  - name: SAP Concur Lists API
-    baseURL: https://us.api.concursolutions.com/list/v4/
-    tags:
-      - Configuration
-      - Lists
-      - REST
-    serviceName: SAP Concur Lists API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - module
+      - tenant
+principles:
+  - name: Visibility
+    description: SAP does not bill API calls separately; for internal cost allocation use the Concur Audit
+      / Reporting APIs and the partner application credential identifiers to attribute consumption to
+      consuming apps and teams.
+  - name: Allocation
+    description: Tag SAP Concur OAuth2 application credentials and entity IDs (companyId) per consuming
+      product; allocate the overall Concur subscription across business units using employee headcount
+      and module activation.
+  - name: Optimization
+    description: Optimize the SAP contract by reviewing module activation (Expense vs Travel vs Invoice
+      vs Request) annually and pruning unused integration apps; reduce API churn via batch endpoints
+      and webhook-driven sync rather than polling.
+  - name: Accountability
+    description: Travel & expense ops typically owns the Concur subscription line; integration owners
+      (HR / IT / partner integrations) are accountable for API usage patterns within the bundled allowance.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
-    url: https://apievangelist.com
