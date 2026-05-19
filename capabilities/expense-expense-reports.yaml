@@ -1,0 +1,178 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SAP Concur Expense API — Expense Reports
+  description: 'SAP Concur Expense API — Expense Reports. 3 operations. Lead operation: SAP Concur Get Expense Report by ID.
+    Self-contained Naftiko capability covering one Concur business surface.'
+  tags:
+  - Concur
+  - Expense Reports
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CONCUR_API_KEY: CONCUR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: expense-expense-reports
+    baseUri: https://us.api.concursolutions.com
+    description: SAP Concur Expense API — Expense Reports business capability. Self-contained, no shared references.
+    resources:
+    - name: expensereports-v4-reports-reportId
+      path: /expensereports/v4/reports/{reportId}
+      operations:
+      - name: getexpensereport
+        method: GET
+        description: SAP Concur Get Expense Report by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: reportId
+          in: path
+          type: string
+          description: The unique identifier of the expense report.
+          required: true
+    - name: expensereports-v4-users-userId-context-contextType-reports
+      path: /expensereports/v4/users/{userId}/context/{contextType}/reports
+      operations:
+      - name: getexpensereports
+        method: GET
+        description: SAP Concur Get Expense Reports
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userId
+          in: path
+          type: string
+          description: The unique identifier of the user.
+          required: true
+        - name: contextType
+          in: path
+          type: string
+          description: The context type for the reports (TRAVELER, PROXY, etc.).
+          required: true
+      - name: createexpensereport
+        method: POST
+        description: SAP Concur Create Expense Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userId
+          in: path
+          type: string
+          description: The unique identifier of the user.
+          required: true
+        - name: contextType
+          in: path
+          type: string
+          description: The context type for the report.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.CONCUR_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: expense-expense-reports-rest
+    port: 8080
+    description: REST adapter for SAP Concur Expense API — Expense Reports. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/expensereports/v4/reports/{reportid}
+      name: expensereports-v4-reports-reportid
+      description: REST surface for expensereports-v4-reports-reportId.
+      operations:
+      - method: GET
+        name: getexpensereport
+        description: SAP Concur Get Expense Report by ID
+        call: expense-expense-reports.getexpensereport
+        with:
+          reportId: rest.reportId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/expensereports/v4/users/{userid}/context/{contexttype}/reports
+      name: expensereports-v4-users-userid-context-contexttype-reports
+      description: REST surface for expensereports-v4-users-userId-context-contextType-reports.
+      operations:
+      - method: GET
+        name: getexpensereports
+        description: SAP Concur Get Expense Reports
+        call: expense-expense-reports.getexpensereports
+        with:
+          userId: rest.userId
+          contextType: rest.contextType
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createexpensereport
+        description: SAP Concur Create Expense Report
+        call: expense-expense-reports.createexpensereport
+        with:
+          userId: rest.userId
+          contextType: rest.contextType
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: expense-expense-reports-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SAP Concur Expense API — Expense Reports. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: sap-concur-get-expense-report
+      description: SAP Concur Get Expense Report by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: expense-expense-reports.getexpensereport
+      with:
+        reportId: tools.reportId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: sap-concur-get-expense-reports
+      description: SAP Concur Get Expense Reports
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: expense-expense-reports.getexpensereports
+      with:
+        userId: tools.userId
+        contextType: tools.contextType
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: sap-concur-create-expense-report
+      description: SAP Concur Create Expense Report
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: expense-expense-reports.createexpensereport
+      with:
+        userId: tools.userId
+        contextType: tools.contextType
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

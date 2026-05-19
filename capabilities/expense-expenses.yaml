@@ -1,0 +1,122 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SAP Concur Expense API — Expenses
+  description: 'SAP Concur Expense API — Expenses. 2 operations. Lead operation: SAP Concur Get Expenses for Report. Self-contained
+    Naftiko capability covering one Concur business surface.'
+  tags:
+  - Concur
+  - Expenses
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CONCUR_API_KEY: CONCUR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: expense-expenses
+    baseUri: https://us.api.concursolutions.com
+    description: SAP Concur Expense API — Expenses business capability. Self-contained, no shared references.
+    resources:
+    - name: expensereports-v4-reports-reportId-expenses
+      path: /expensereports/v4/reports/{reportId}/expenses
+      operations:
+      - name: getexpenses
+        method: GET
+        description: SAP Concur Get Expenses for Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: reportId
+          in: path
+          type: string
+          description: The unique identifier of the expense report.
+          required: true
+      - name: createexpense
+        method: POST
+        description: SAP Concur Create Expense Entry
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: reportId
+          in: path
+          type: string
+          description: The unique identifier of the expense report.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.CONCUR_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: expense-expenses-rest
+    port: 8080
+    description: REST adapter for SAP Concur Expense API — Expenses. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/expensereports/v4/reports/{reportid}/expenses
+      name: expensereports-v4-reports-reportid-expenses
+      description: REST surface for expensereports-v4-reports-reportId-expenses.
+      operations:
+      - method: GET
+        name: getexpenses
+        description: SAP Concur Get Expenses for Report
+        call: expense-expenses.getexpenses
+        with:
+          reportId: rest.reportId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createexpense
+        description: SAP Concur Create Expense Entry
+        call: expense-expenses.createexpense
+        with:
+          reportId: rest.reportId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: expense-expenses-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SAP Concur Expense API — Expenses. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: sap-concur-get-expenses-report
+      description: SAP Concur Get Expenses for Report
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: expense-expenses.getexpenses
+      with:
+        reportId: tools.reportId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: sap-concur-create-expense-entry
+      description: SAP Concur Create Expense Entry
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: expense-expenses.createexpense
+      with:
+        reportId: tools.reportId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
