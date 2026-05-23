@@ -1,0 +1,27 @@
+{
+  "operationId": "getExpenseReports",
+  "method": "GET",
+  "path": "/expensereports/v4/users/{userId}/context/{contextType}/reports",
+  "summary": "SAP Concur Get Expense Reports",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "GetExpenseReports200Example",
+      "example": {
+        "reports": [
+          {
+            "reportId": "500123",
+            "reportName": "Q1 Travel Expenses",
+            "ownerName": "Jane Smith",
+            "submitDate": "2026-03-15T14:30:00Z",
+            "approvalStatus": "SUBMITTED",
+            "total": 2450.75,
+            "currencyCode": "USD"
+          }
+        ]
+      }
+    }
+  ]
+}

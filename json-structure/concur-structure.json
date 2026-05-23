@@ -1,0 +1,101 @@
+{
+  "provider": "SAP Concur",
+  "providerId": "concur",
+  "kind": "json-structure",
+  "description": "Structural overview of the SAP Concur API surface; extracted from openapi/.",
+  "schemaCount": 6,
+  "operationCount": 5,
+  "schemas": [
+    {
+      "name": "ExpenseReport",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "ExpenseReportCreate",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "reportName",
+        "currencyCode"
+      ]
+    },
+    {
+      "name": "ExpenseReportCollection",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Expense",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "ExpenseCreate",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "expenseTypeName",
+        "transactionDate",
+        "transactionAmount",
+        "transactionCurrencyCode"
+      ]
+    },
+    {
+      "name": "ExpenseCollection",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/expensereports/v4/users/{userId}/context/{contextType}/reports",
+      "operationId": "getExpenseReports",
+      "summary": "SAP Concur Get Expense Reports",
+      "tags": [
+        "Expense Reports"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/expensereports/v4/users/{userId}/context/{contextType}/reports",
+      "operationId": "createExpenseReport",
+      "summary": "SAP Concur Create Expense Report",
+      "tags": [
+        "Expense Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/expensereports/v4/reports/{reportId}",
+      "operationId": "getExpenseReport",
+      "summary": "SAP Concur Get Expense Report by ID",
+      "tags": [
+        "Expense Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/expensereports/v4/reports/{reportId}/expenses",
+      "operationId": "getExpenses",
+      "summary": "SAP Concur Get Expenses for Report",
+      "tags": [
+        "Expenses"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/expensereports/v4/reports/{reportId}/expenses",
+      "operationId": "createExpense",
+      "summary": "SAP Concur Create Expense Entry",
+      "tags": [
+        "Expenses"
+      ]
+    }
+  ]
+}

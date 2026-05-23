@@ -1,0 +1,11 @@
+name: SAP Concur Domain Vocabulary
+provider: SAP Concur
+providerId: concur
+description: Tag-derived vocabulary for the SAP Concur API surface; sourced from openapi/ tags.
+terms:
+- term: Expense Reports
+  description: Manage expense reports
+- term: Expenses
+  description: Manage individual expense entries
+- term: Allocations
+  description: Manage expense allocations

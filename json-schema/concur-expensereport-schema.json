@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExpenseReport",
+  "title": "ExpenseReport",
+  "type": "object",
+  "description": "An expense report containing expense entries.",
+  "properties": {
+    "reportId": {
+      "type": "string",
+      "description": "Unique identifier for the expense report.",
+      "example": "500123"
+    },
+    "reportName": {
+      "type": "string",
+      "description": "Name of the expense report.",
+      "example": "Q1 Travel Expenses"
+    },
+    "ownerName": {
+      "type": "string",
+      "description": "Full name of the report owner.",
+      "example": "Jane Smith"
+    },
+    "businessPurpose": {
+      "type": "string",
+      "description": "Business purpose for the expenses.",
+      "example": "Client meetings in New York"
+    },
+    "submitDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date the report was submitted.",
+      "example": "2026-03-15T14:30:00Z"
+    },
+    "approvalStatus": {
+      "type": "string",
+      "description": "Current approval status of the report.",
+      "enum": [
+        "NOT_SUBMITTED",
+        "SUBMITTED",
+        "APPROVED",
+        "SENT_BACK",
+        "RECALLED"
+      ],
+      "example": "SUBMITTED"
+    },
+    "total": {
+      "type": "number",
+      "format": "double",
+      "description": "Total amount of all expenses in the report.",
+      "example": 2450.75
+    },
+    "currencyCode": {
+      "type": "string",
+      "description": "ISO 4217 currency code.",
+      "example": "USD"
+    },
+    "countryCode": {
+      "type": "string",
+      "description": "ISO country code.",
+      "example": "US"
+    },
+    "reportDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the report.",
+      "example": "2026-03-15"
+    }
+  }
+}

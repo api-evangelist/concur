@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExpenseReportCreate",
+  "title": "ExpenseReportCreate",
+  "type": "object",
+  "description": "Request body for creating a new expense report.",
+  "required": [
+    "reportName",
+    "currencyCode"
+  ],
+  "properties": {
+    "reportName": {
+      "type": "string",
+      "description": "Name of the expense report.",
+      "example": "Q1 Travel Expenses"
+    },
+    "businessPurpose": {
+      "type": "string",
+      "description": "Business purpose for the expenses.",
+      "example": "Client meetings in New York"
+    },
+    "countryCode": {
+      "type": "string",
+      "description": "ISO country code.",
+      "example": "US"
+    },
+    "currencyCode": {
+      "type": "string",
+      "description": "ISO 4217 currency code.",
+      "example": "USD"
+    },
+    "reportDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the report.",
+      "example": "2026-03-15"
+    }
+  }
+}

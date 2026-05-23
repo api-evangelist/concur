@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExpenseCreate",
+  "title": "ExpenseCreate",
+  "type": "object",
+  "description": "Request body for creating an expense entry.",
+  "required": [
+    "expenseTypeName",
+    "transactionDate",
+    "transactionAmount",
+    "transactionCurrencyCode"
+  ],
+  "properties": {
+    "expenseTypeName": {
+      "type": "string",
+      "description": "Name of the expense type.",
+      "example": "Airfare"
+    },
+    "transactionDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the transaction.",
+      "example": "2026-03-10"
+    },
+    "transactionAmount": {
+      "type": "number",
+      "format": "double",
+      "description": "Amount of the transaction.",
+      "example": 875.5
+    },
+    "transactionCurrencyCode": {
+      "type": "string",
+      "description": "Currency code.",
+      "example": "USD"
+    },
+    "vendorName": {
+      "type": "string",
+      "description": "Name of the vendor.",
+      "example": "United Airlines"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the expense.",
+      "example": "Flight from SFO to JFK"
+    }
+  }
+}

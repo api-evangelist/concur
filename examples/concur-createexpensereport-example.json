@@ -1,0 +1,20 @@
+{
+  "operationId": "createExpenseReport",
+  "method": "POST",
+  "path": "/expensereports/v4/users/{userId}/context/{contextType}/reports",
+  "summary": "SAP Concur Create Expense Report",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CreateExpenseReportRequestExample",
+      "example": {
+        "reportName": "Q1 Travel Expenses",
+        "businessPurpose": "Client meetings in New York",
+        "countryCode": "US",
+        "currencyCode": "USD",
+        "reportDate": "2026-03-15"
+      }
+    }
+  ],
+  "responseExamples": []
+}
