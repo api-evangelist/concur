@@ -2,11 +2,15 @@
   "repo": "concur",
   "feeds": [
     {
-      "source": "https://www.concur.com/blog",
-      "feed_url": "https://www.concur.com/blog/feed/",
+      "source": "https://www.concur.com/blog/feed/",
+      "error": "HTTPError"
+    },
+    {
+      "source": "https://developer.concur.com/feed.xml",
+      "feed_url": "https://developer.concur.com/feed.xml",
       "title": "",
-      "saved": 5,
-      "method": "discovered"
+      "saved": 0,
+      "method": "feed"
     },
     {
       "source": "https://developer.concur.com/api-reference/authentication/apidoc.html",
@@ -16,6 +20,6 @@
       "method": "discovered"
     }
   ],
-  "post_count": 68,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 72,
+  "fetched": "2026-06-27T12:03:07Z"
 }
