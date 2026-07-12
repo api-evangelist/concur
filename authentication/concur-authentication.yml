@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/concur-expense-api.yaml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: OAuth 2.0 Bearer Token authentication.
+  sources:
+  - openapi/concur-expense-api.yaml

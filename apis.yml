@@ -134,6 +134,12 @@ apis:
   - type: Documentation
     url: https://developer.concur.com/api-reference/common/lists/v4.list.html
 common:
+- type: VulnerabilityDisclosure
+  url: security/concur-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/concur-domain-security.yml
+- type: Authentication
+  url: authentication/concur-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/sapconcur
 - type: Portal
