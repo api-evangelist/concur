@@ -2,10 +2,6 @@
   "repo": "concur",
   "feeds": [
     {
-      "source": "https://www.concur.com/blog/feed/",
-      "error": "HTTPError"
-    },
-    {
       "source": "https://developer.concur.com/feed.xml",
       "feed_url": "https://developer.concur.com/feed.xml",
       "title": "",
@@ -21,5 +17,6 @@
     }
   ],
   "post_count": 72,
-  "fetched": "2026-06-27T12:03:07Z"
+  "fetched": "2026-07-11T11:50:51Z",
+  "note": "www.concur.com/blog/feed/ 403, developer.concur.com/feed.xml returned empty channel, www.concur.com/blog 403"
 }
