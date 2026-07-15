@@ -134,6 +134,8 @@ apis:
   - type: Documentation
     url: https://developer.concur.com/api-reference/common/lists/v4.list.html
 common:
+- type: AgenticAccess
+  url: agentic-access/concur-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/concur-vulnerability-disclosure.yml
 - type: DomainSecurity
