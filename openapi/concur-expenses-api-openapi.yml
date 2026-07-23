@@ -1,0 +1,162 @@
+openapi: 3.0.3
+info:
+  title: SAP Concur Expense Expense Reports Expenses API
+  description: REST API for managing expense reports, entries, allocations, and attendees. Supports creating, updating, and submitting expense reports with receipt images, policy validation, and approval workflows.
+  version: '4.0'
+  contact:
+    name: SAP Concur Developer Support
+    url: https://developer.concur.com/
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://us.api.concursolutions.com
+  description: US Production
+- url: https://emea.api.concursolutions.com
+  description: EMEA Production
+security:
+- bearerAuth: []
+tags:
+- name: Expenses
+  description: Manage individual expense entries
+paths:
+  /expensereports/v4/reports/{reportId}/expenses:
+    get:
+      operationId: getExpenses
+      summary: SAP Concur Get Expenses for Report
+      description: Retrieves all expense entries for a specific report.
+      tags:
+      - Expenses
+      parameters:
+      - name: reportId
+        in: path
+        required: true
+        description: The unique identifier of the expense report.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved expenses.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpenseCollection'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createExpense
+      summary: SAP Concur Create Expense Entry
+      description: Creates a new expense entry within an expense report.
+      tags:
+      - Expenses
+      parameters:
+      - name: reportId
+        in: path
+        required: true
+        description: The unique identifier of the expense report.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpenseCreate'
+      responses:
+        '201':
+          description: Expense entry created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expense'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Expense:
+      type: object
+      description: An individual expense entry.
+      properties:
+        expenseId:
+          type: string
+          description: Unique identifier for the expense entry.
+          example: '600456'
+        expenseTypeName:
+          type: string
+          description: Name of the expense type.
+          example: Airfare
+        transactionDate:
+          type: string
+          format: date
+          description: Date of the transaction.
+          example: '2026-03-10'
+        transactionAmount:
+          type: number
+          format: double
+          description: Amount of the transaction.
+          example: 875.5
+        transactionCurrencyCode:
+          type: string
+          description: Currency code of the transaction.
+          example: USD
+        vendorName:
+          type: string
+          description: Name of the vendor.
+          example: United Airlines
+        description:
+          type: string
+          description: Description of the expense.
+          example: Flight from SFO to JFK
+        receiptRequired:
+          type: boolean
+          description: Whether a receipt is required.
+          example: true
+    ExpenseCollection:
+      type: object
+      description: Collection of expense entries.
+      properties:
+        expenses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Expense'
+    ExpenseCreate:
+      type: object
+      description: Request body for creating an expense entry.
+      required:
+      - expenseTypeName
+      - transactionDate
+      - transactionAmount
+      - transactionCurrencyCode
+      properties:
+        expenseTypeName:
+          type: string
+          description: Name of the expense type.
+          example: Airfare
+        transactionDate:
+          type: string
+          format: date
+          description: Date of the transaction.
+          example: '2026-03-10'
+        transactionAmount:
+          type: number
+          format: double
+          description: Amount of the transaction.
+          example: 875.5
+        transactionCurrencyCode:
+          type: string
+          description: Currency code.
+          example: USD
+        vendorName:
+          type: string
+          description: Name of the vendor.
+          example: United Airlines
+        description:
+          type: string
+          description: Description of the expense.
+          example: Flight from SFO to JFK
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer Token authentication.

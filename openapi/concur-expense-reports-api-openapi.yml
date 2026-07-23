@@ -1,0 +1,239 @@
+openapi: 3.0.3
+info:
+  title: SAP Concur Expense Expense Reports API
+  description: REST API for managing expense reports, entries, allocations, and attendees. Supports creating, updating, and submitting expense reports with receipt images, policy validation, and approval workflows.
+  version: '4.0'
+  contact:
+    name: SAP Concur Developer Support
+    url: https://developer.concur.com/
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://us.api.concursolutions.com
+  description: US Production
+- url: https://emea.api.concursolutions.com
+  description: EMEA Production
+security:
+- bearerAuth: []
+tags:
+- name: Expense Reports
+  description: Manage expense reports
+paths:
+  /expensereports/v4/users/{userId}/context/{contextType}/reports:
+    get:
+      operationId: getExpenseReports
+      summary: SAP Concur Get Expense Reports
+      description: Retrieves all expense reports for the specified user and context.
+      tags:
+      - Expense Reports
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        description: The unique identifier of the user.
+        schema:
+          type: string
+      - name: contextType
+        in: path
+        required: true
+        description: The context type for the reports (TRAVELER, PROXY, etc.).
+        schema:
+          type: string
+          enum:
+          - TRAVELER
+          - PROXY
+          - APPROVER
+      responses:
+        '200':
+          description: Successfully retrieved expense reports.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpenseReportCollection'
+              examples:
+                GetExpenseReports200Example:
+                  summary: Default getExpenseReports 200 response
+                  x-microcks-default: true
+                  value:
+                    reports:
+                    - reportId: '500123'
+                      reportName: Q1 Travel Expenses
+                      ownerName: Jane Smith
+                      submitDate: '2026-03-15T14:30:00Z'
+                      approvalStatus: SUBMITTED
+                      total: 2450.75
+                      currencyCode: USD
+        '401':
+          description: Unauthorized - invalid or missing authentication.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createExpenseReport
+      summary: SAP Concur Create Expense Report
+      description: Creates a new expense report for the specified user.
+      tags:
+      - Expense Reports
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        description: The unique identifier of the user.
+        schema:
+          type: string
+      - name: contextType
+        in: path
+        required: true
+        description: The context type for the report.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpenseReportCreate'
+            examples:
+              CreateExpenseReportRequestExample:
+                summary: Default createExpenseReport request
+                x-microcks-default: true
+                value:
+                  reportName: Q1 Travel Expenses
+                  businessPurpose: Client meetings in New York
+                  countryCode: US
+                  currencyCode: USD
+                  reportDate: '2026-03-15'
+      responses:
+        '201':
+          description: Expense report created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpenseReport'
+        '400':
+          description: Bad request - invalid report data.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /expensereports/v4/reports/{reportId}:
+    get:
+      operationId: getExpenseReport
+      summary: SAP Concur Get Expense Report by ID
+      description: Retrieves a specific expense report by its identifier.
+      tags:
+      - Expense Reports
+      parameters:
+      - name: reportId
+        in: path
+        required: true
+        description: The unique identifier of the expense report.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved the expense report.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpenseReport'
+        '404':
+          description: Report not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ExpenseReport:
+      type: object
+      description: An expense report containing expense entries.
+      properties:
+        reportId:
+          type: string
+          description: Unique identifier for the expense report.
+          example: '500123'
+        reportName:
+          type: string
+          description: Name of the expense report.
+          example: Q1 Travel Expenses
+        ownerName:
+          type: string
+          description: Full name of the report owner.
+          example: Jane Smith
+        businessPurpose:
+          type: string
+          description: Business purpose for the expenses.
+          example: Client meetings in New York
+        submitDate:
+          type: string
+          format: date-time
+          description: Date the report was submitted.
+          example: '2026-03-15T14:30:00Z'
+        approvalStatus:
+          type: string
+          description: Current approval status of the report.
+          enum:
+          - NOT_SUBMITTED
+          - SUBMITTED
+          - APPROVED
+          - SENT_BACK
+          - RECALLED
+          example: SUBMITTED
+        total:
+          type: number
+          format: double
+          description: Total amount of all expenses in the report.
+          example: 2450.75
+        currencyCode:
+          type: string
+          description: ISO 4217 currency code.
+          example: USD
+        countryCode:
+          type: string
+          description: ISO country code.
+          example: US
+        reportDate:
+          type: string
+          format: date
+          description: Date of the report.
+          example: '2026-03-15'
+    ExpenseReportCollection:
+      type: object
+      description: Collection of expense reports.
+      properties:
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExpenseReport'
+    ExpenseReportCreate:
+      type: object
+      description: Request body for creating a new expense report.
+      required:
+      - reportName
+      - currencyCode
+      properties:
+        reportName:
+          type: string
+          description: Name of the expense report.
+          example: Q1 Travel Expenses
+        businessPurpose:
+          type: string
+          description: Business purpose for the expenses.
+          example: Client meetings in New York
+        countryCode:
+          type: string
+          description: ISO country code.
+          example: US
+        currencyCode:
+          type: string
+          description: ISO 4217 currency code.
+          example: USD
+        reportDate:
+          type: string
+          format: date
+          description: Date of the report.
+          example: '2026-03-15'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer Token authentication.
