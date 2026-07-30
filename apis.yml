@@ -4,7 +4,20 @@ description: SAP Concur provides a comprehensive suite of REST APIs for travel, 
   API platform enables integration with expense reporting, travel booking, invoice processing, receipt capture, and user management
   services used by enterprises worldwide for spend management automation.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/concur.png
 url: https://raw.githubusercontent.com/api-evangelist/concur/refs/heads/main/apis.yml
 created: '2024-01-01'
 modified: '2026-05-19'
@@ -18,8 +31,9 @@ tags:
 apis:
 - aid: concur:expense-api
   name: SAP Concur Expense API
-  description: REST API for managing expense reports, entries, allocations, and attendees. Supports creating, updating, and
-    submitting expense reports with receipt images, policy validation, and approval workflows.
+  description: >-
+    REST API for managing expense reports, entries, allocations, and attendees. Supports creating, updating,
+    and submitting expense reports with receipt images, policy validation, and approval workflows.
   humanURL: https://developer.concur.com/api-reference/expense/expense-report/v4.expenses.html
   baseURL: https://us.api.concursolutions.com/expensereports/v4/
   tags:
@@ -33,15 +47,17 @@ apis:
   - type: APIReference
     url: https://developer.concur.com/api-reference/expense/expense-report/v4.expenses.html
   - type: GettingStarted
-    url: https://developer.concur.com/api-reference/expense/expense-report/v4.expenses-get-started.html
+    url: >-
+      https://developer.concur.com/api-reference/expense/expense-report/v4.expenses-get-started.html
   - type: X-NaftikoCapability
     url: capabilities/expense-expense-reports.yaml
   - type: X-NaftikoCapability
     url: capabilities/expense-expenses.yaml
 - aid: concur:travel-api
   name: SAP Concur Travel API
-  description: REST API for managing travel itineraries, bookings, and travel profiles. Supports searching for travel options,
-    creating bookings, and managing travel policies and preferences.
+  description: >-
+    REST API for managing travel itineraries, bookings, and travel profiles. Supports searching for travel
+    options, creating bookings, and managing travel policies and preferences.
   humanURL: https://developer.concur.com/api-reference/travel/
   baseURL: https://us.api.concursolutions.com/travel/
   tags:
@@ -54,8 +70,9 @@ apis:
     url: https://developer.concur.com/api-reference/travel/
 - aid: concur:invoice-api
   name: SAP Concur Invoice API
-  description: REST API for accounts payable invoice processing including purchase requests, vendor management, payment batches,
-    and invoice approval workflows.
+  description: >-
+    REST API for accounts payable invoice processing including purchase requests, vendor management, payment
+    batches, and invoice approval workflows.
   humanURL: https://developer.concur.com/api-reference/invoice/v3.invoice.html
   baseURL: https://us.api.concursolutions.com/invoice/
   tags:
@@ -68,8 +85,9 @@ apis:
     url: https://developer.concur.com/api-reference/invoice/v3.invoice.html
 - aid: concur:receipts-api
   name: SAP Concur Receipts API
-  description: REST API for submitting and managing digital receipts from e-commerce providers, ground transportation, hotels,
-    and other merchants directly to Concur expense.
+  description: >-
+    REST API for submitting and managing digital receipts from e-commerce providers, ground transportation,
+    hotels, and other merchants directly to Concur expense.
   humanURL: https://developer.concur.com/api-reference/receipts/
   baseURL: https://us.api.concursolutions.com/receipts/v4/
   tags:
@@ -81,8 +99,9 @@ apis:
     url: https://developer.concur.com/api-reference/receipts/
 - aid: concur:request-api
   name: SAP Concur Request API
-  description: REST API for managing pre-trip travel requests and approvals, enabling employees to submit travel requests
-    for authorization before booking.
+  description: >-
+    REST API for managing pre-trip travel requests and approvals, enabling employees to submit travel
+    requests for authorization before booking.
   humanURL: https://developer.concur.com/api-reference/request/v4.get-started.html
   baseURL: https://us.api.concursolutions.com/travelrequest/v4/
   tags:
@@ -94,8 +113,9 @@ apis:
     url: https://developer.concur.com/api-reference/request/v4.get-started.html
 - aid: concur:user-provisioning-api
   name: SAP Concur User Provisioning API
-  description: SCIM 2.0-compliant API for provisioning and managing Concur user accounts, roles, and profile information with
-    support for bulk operations.
+  description: >-
+    SCIM 2.0-compliant API for provisioning and managing Concur user accounts, roles, and profile information
+    with support for bulk operations.
   humanURL: https://developer.concur.com/api-reference/user-provisioning/v4.user-provisioning.html
   baseURL: https://us.api.concursolutions.com/provisioning/v4/
   tags:
@@ -108,8 +128,9 @@ apis:
     url: https://developer.concur.com/api-reference/user-provisioning/v4.user-provisioning.html
 - aid: concur:events-api
   name: SAP Concur Events API
-  description: Event subscription API enabling applications to receive real-time notifications when events occur in Concur
-    such as expense report submissions, approvals, and status changes.
+  description: >-
+    Event subscription API enabling applications to receive real-time notifications when events occur
+    in Concur such as expense report submissions, approvals, and status changes.
   humanURL: https://developer.concur.com/api-reference/ess/v4.event-subscription.html
   baseURL: https://us.api.concursolutions.com/events/v4/
   tags:
@@ -122,8 +143,9 @@ apis:
     url: https://developer.concur.com/api-reference/ess/v4.event-subscription.html
 - aid: concur:lists-api
   name: SAP Concur Lists API
-  description: REST API for managing custom lists and list items used in expense forms, travel policies, and invoice configurations
-    for dropdown and lookup fields.
+  description: >-
+    REST API for managing custom lists and list items used in expense forms, travel policies, and invoice
+    configurations for dropdown and lookup fields.
   humanURL: https://developer.concur.com/api-reference/common/lists/v4.list.html
   baseURL: https://us.api.concursolutions.com/list/v4/
   tags:
@@ -133,7 +155,29 @@ apis:
   properties:
   - type: Documentation
     url: https://developer.concur.com/api-reference/common/lists/v4.list.html
+- aid: concur:concur-expense-reports-api
+  name: SAP Concur Expense Reports API
+  description: Manage expense reports
+  humanURL: https://developer.concur.com/api-reference/expense/expense-report/v4.expenses.html
+  baseURL: https://us.api.concursolutions.com/expensereports/v4/
+  tags:
+  - Expense Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/concur-expense-reports-api-openapi.yml
+- aid: concur:concur-expenses-api
+  name: SAP Concur Expenses API
+  description: Manage individual expense entries
+  humanURL: https://developer.concur.com/api-reference/expense/expense-report/v4.expenses.html
+  baseURL: https://us.api.concursolutions.com/expensereports/v4/
+  tags:
+  - Expenses
+  properties:
+  - type: OpenAPI
+    url: openapi/concur-expenses-api-openapi.yml
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/sap-concur/overview
 - type: AgenticAccess
   url: agentic-access/concur-agentic-access.yml
 - type: VulnerabilityDisclosure
