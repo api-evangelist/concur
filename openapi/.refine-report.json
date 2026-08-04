@@ -1,0 +1,16 @@
+{
+  "provider": "concur",
+  "sources": [
+    "concur-expense-reports-api-openapi.yml",
+    "concur-expenses-api-openapi.yml"
+  ],
+  "outputs": [
+    "concur-expense-reports-api-openapi.yml",
+    "concur-expenses-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

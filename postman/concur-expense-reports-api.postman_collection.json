@@ -1,0 +1,594 @@
+{
+  "info": {
+    "_postman_id": "9fb0a735-4ae4-4729-9605-ebc1e0b5c2b9",
+    "name": "SAP Concur Expense Expense Reports API",
+    "description": "REST API for managing expense reports, entries, allocations, and attendees. Supports creating, updating, and submitting expense reports with receipt images, policy validation, and approval workflows.\n\nContact Support:\n Name: SAP Concur Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:25:15.000Z",
+    "updatedAt": "2026-07-28T01:25:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9fb0a735-4ae4-4729-9605-ebc1e0b5c2b9"
+  },
+  "item": [
+    {
+      "name": "expensereports",
+      "item": [
+        {
+          "name": "v4",
+          "item": [
+            {
+              "name": "users",
+              "item": [
+                {
+                  "name": "{userId}",
+                  "item": [
+                    {
+                      "name": "context",
+                      "item": [
+                        {
+                          "name": "{contextType}",
+                          "item": [
+                            {
+                              "name": "reports",
+                              "item": [
+                                {
+                                  "name": "SAP Concur Get Expense Reports",
+                                  "id": "4324067f-e146-4767-bdb4-41cab99edd0a",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/expensereports/v4/users/:userId/context/:contextType/reports",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "expensereports",
+                                        "v4",
+                                        "users",
+                                        ":userId",
+                                        "context",
+                                        ":contextType",
+                                        "reports"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "e2e7d0af-711c-4cea-a571-a34bcf223ff7",
+                                          "key": "userId",
+                                          "value": "<string>",
+                                          "description": "(Required) The unique identifier of the user."
+                                        },
+                                        {
+                                          "id": "eba982a4-4bb6-48df-9cd7-dbc90d33dd1e",
+                                          "key": "contextType",
+                                          "value": "PROXY",
+                                          "description": "(Required) The context type for the reports (TRAVELER, PROXY, etc.)."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Retrieves all expense reports for the specified user and context."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "8ba8b95e-78b8-461c-aeb7-a5a0be1928e6",
+                                      "name": "Successfully retrieved expense reports.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/expensereports/v4/users/:userId/context/:contextType/reports",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "expensereports",
+                                            "v4",
+                                            "users",
+                                            ":userId",
+                                            "context",
+                                            ":contextType",
+                                            "reports"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "userId"
+                                            },
+                                            {
+                                              "key": "contextType"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"reports\": [\n    {\n      \"reportId\": \"<string>\",\n      \"reportName\": \"<string>\",\n      \"ownerName\": \"<string>\",\n      \"businessPurpose\": \"<string>\",\n      \"submitDate\": \"<dateTime>\",\n      \"approvalStatus\": \"APPROVED\",\n      \"total\": \"<double>\",\n      \"currencyCode\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"reportDate\": \"<date>\"\n    },\n    {\n      \"reportId\": \"<string>\",\n      \"reportName\": \"<string>\",\n      \"ownerName\": \"<string>\",\n      \"businessPurpose\": \"<string>\",\n      \"submitDate\": \"<dateTime>\",\n      \"approvalStatus\": \"NOT_SUBMITTED\",\n      \"total\": \"<double>\",\n      \"currencyCode\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"reportDate\": \"<date>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:25:16.000Z",
+                                      "updatedAt": "2026-07-28T01:25:16.000Z",
+                                      "uid": "35240-8ba8b95e-78b8-461c-aeb7-a5a0be1928e6"
+                                    },
+                                    {
+                                      "id": "d37874ab-17de-4979-88c3-4f2a16901c87",
+                                      "name": "Unauthorized - invalid or missing authentication.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/expensereports/v4/users/:userId/context/:contextType/reports",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "expensereports",
+                                            "v4",
+                                            "users",
+                                            ":userId",
+                                            "context",
+                                            ":contextType",
+                                            "reports"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "userId"
+                                            },
+                                            {
+                                              "key": "contextType"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T01:25:16.000Z",
+                                      "updatedAt": "2026-07-28T01:25:16.000Z",
+                                      "uid": "35240-d37874ab-17de-4979-88c3-4f2a16901c87"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:25:16.000Z",
+                                  "updatedAt": "2026-07-28T01:25:16.000Z",
+                                  "uid": "35240-4324067f-e146-4767-bdb4-41cab99edd0a"
+                                },
+                                {
+                                  "name": "SAP Concur Create Expense Report",
+                                  "id": "78fa71d0-6c7f-4cc6-a4a8-82bdbbaa4fbd",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"reportName\": \"<string>\",\n  \"currencyCode\": \"<string>\",\n  \"businessPurpose\": \"<string>\",\n  \"countryCode\": \"<string>\",\n  \"reportDate\": \"<date>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/expensereports/v4/users/:userId/context/:contextType/reports",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "expensereports",
+                                        "v4",
+                                        "users",
+                                        ":userId",
+                                        "context",
+                                        ":contextType",
+                                        "reports"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "7a52b619-c1b9-4831-9c84-3b830b52af30",
+                                          "key": "userId",
+                                          "value": "<string>",
+                                          "description": "(Required) The unique identifier of the user."
+                                        },
+                                        {
+                                          "id": "c3baacd1-4779-4626-adea-7efe2978667a",
+                                          "key": "contextType",
+                                          "value": "<string>",
+                                          "description": "(Required) The context type for the report."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Creates a new expense report for the specified user."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "a9ac81ac-5f53-4048-82e8-7ec842746b1e",
+                                      "name": "Expense report created successfully.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"reportName\": \"<string>\",\n  \"currencyCode\": \"<string>\",\n  \"businessPurpose\": \"<string>\",\n  \"countryCode\": \"<string>\",\n  \"reportDate\": \"<date>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/expensereports/v4/users/:userId/context/:contextType/reports",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "expensereports",
+                                            "v4",
+                                            "users",
+                                            ":userId",
+                                            "context",
+                                            ":contextType",
+                                            "reports"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "userId"
+                                            },
+                                            {
+                                              "key": "contextType"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Created",
+                                      "code": 201,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"reportId\": \"<string>\",\n  \"reportName\": \"<string>\",\n  \"ownerName\": \"<string>\",\n  \"businessPurpose\": \"<string>\",\n  \"submitDate\": \"<dateTime>\",\n  \"approvalStatus\": \"SUBMITTED\",\n  \"total\": \"<double>\",\n  \"currencyCode\": \"<string>\",\n  \"countryCode\": \"<string>\",\n  \"reportDate\": \"<date>\"\n}",
+                                      "createdAt": "2026-07-28T01:25:16.000Z",
+                                      "updatedAt": "2026-07-28T01:25:16.000Z",
+                                      "uid": "35240-a9ac81ac-5f53-4048-82e8-7ec842746b1e"
+                                    },
+                                    {
+                                      "id": "62e2451e-0d04-4a95-bfd7-fd309efee59e",
+                                      "name": "Bad request - invalid report data.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"reportName\": \"<string>\",\n  \"currencyCode\": \"<string>\",\n  \"businessPurpose\": \"<string>\",\n  \"countryCode\": \"<string>\",\n  \"reportDate\": \"<date>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/expensereports/v4/users/:userId/context/:contextType/reports",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "expensereports",
+                                            "v4",
+                                            "users",
+                                            ":userId",
+                                            "context",
+                                            ":contextType",
+                                            "reports"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "userId"
+                                            },
+                                            {
+                                              "key": "contextType"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T01:25:16.000Z",
+                                      "updatedAt": "2026-07-28T01:25:16.000Z",
+                                      "uid": "35240-62e2451e-0d04-4a95-bfd7-fd309efee59e"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:25:16.000Z",
+                                  "updatedAt": "2026-07-28T01:25:16.000Z",
+                                  "uid": "35240-78fa71d0-6c7f-4cc6-a4a8-82bdbbaa4fbd"
+                                }
+                              ],
+                              "id": "0212e726-5e1a-4c33-b59d-e56acb3f3cf3",
+                              "createdAt": "2026-07-28T01:25:16.000Z",
+                              "updatedAt": "2026-07-28T01:25:16.000Z",
+                              "uid": "35240-0212e726-5e1a-4c33-b59d-e56acb3f3cf3"
+                            }
+                          ],
+                          "id": "3d2efb2b-0eac-4c66-a8a7-eb77d5f115da",
+                          "createdAt": "2026-07-28T01:25:16.000Z",
+                          "updatedAt": "2026-07-28T01:25:16.000Z",
+                          "uid": "35240-3d2efb2b-0eac-4c66-a8a7-eb77d5f115da"
+                        }
+                      ],
+                      "id": "e82707f0-48d3-43c2-902b-bc5406ba7b68",
+                      "createdAt": "2026-07-28T01:25:16.000Z",
+                      "updatedAt": "2026-07-28T01:25:16.000Z",
+                      "uid": "35240-e82707f0-48d3-43c2-902b-bc5406ba7b68"
+                    }
+                  ],
+                  "id": "7192792b-5497-4478-a67b-d18b02e80d33",
+                  "createdAt": "2026-07-28T01:25:16.000Z",
+                  "updatedAt": "2026-07-28T01:25:16.000Z",
+                  "uid": "35240-7192792b-5497-4478-a67b-d18b02e80d33"
+                }
+              ],
+              "id": "ee08b79f-ced7-4209-a211-e04bbc064e53",
+              "createdAt": "2026-07-28T01:25:16.000Z",
+              "updatedAt": "2026-07-28T01:25:16.000Z",
+              "uid": "35240-ee08b79f-ced7-4209-a211-e04bbc064e53"
+            },
+            {
+              "name": "reports",
+              "item": [
+                {
+                  "name": "{reportId}",
+                  "item": [
+                    {
+                      "name": "SAP Concur Get Expense Report by ID",
+                      "id": "29735e5d-6121-4eb4-a5ab-0667d07a2342",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/expensereports/v4/reports/:reportId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "expensereports",
+                            "v4",
+                            "reports",
+                            ":reportId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "3f213ab4-191a-480f-b497-0296ea1d3608",
+                              "key": "reportId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the expense report."
+                            }
+                          ]
+                        },
+                        "description": "Retrieves a specific expense report by its identifier."
+                      },
+                      "response": [
+                        {
+                          "id": "6586d60c-5cda-4958-ab95-8f29b363df3e",
+                          "name": "Successfully retrieved the expense report.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/expensereports/v4/reports/:reportId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "expensereports",
+                                "v4",
+                                "reports",
+                                ":reportId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "reportId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"reportId\": \"<string>\",\n  \"reportName\": \"<string>\",\n  \"ownerName\": \"<string>\",\n  \"businessPurpose\": \"<string>\",\n  \"submitDate\": \"<dateTime>\",\n  \"approvalStatus\": \"SUBMITTED\",\n  \"total\": \"<double>\",\n  \"currencyCode\": \"<string>\",\n  \"countryCode\": \"<string>\",\n  \"reportDate\": \"<date>\"\n}",
+                          "createdAt": "2026-07-28T01:25:16.000Z",
+                          "updatedAt": "2026-07-28T01:25:16.000Z",
+                          "uid": "35240-6586d60c-5cda-4958-ab95-8f29b363df3e"
+                        },
+                        {
+                          "id": "64ba7f51-3404-4d8a-995d-e1464a38b813",
+                          "name": "Report not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/expensereports/v4/reports/:reportId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "expensereports",
+                                "v4",
+                                "reports",
+                                ":reportId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "reportId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:25:16.000Z",
+                          "updatedAt": "2026-07-28T01:25:16.000Z",
+                          "uid": "35240-64ba7f51-3404-4d8a-995d-e1464a38b813"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:25:16.000Z",
+                      "updatedAt": "2026-07-28T01:25:16.000Z",
+                      "uid": "35240-29735e5d-6121-4eb4-a5ab-0667d07a2342"
+                    }
+                  ],
+                  "id": "b528d295-e6d9-4bcf-b757-f680d7b2ebfa",
+                  "createdAt": "2026-07-28T01:25:16.000Z",
+                  "updatedAt": "2026-07-28T01:25:16.000Z",
+                  "uid": "35240-b528d295-e6d9-4bcf-b757-f680d7b2ebfa"
+                }
+              ],
+              "id": "12284941-8d0b-4835-b834-327c84975bfc",
+              "createdAt": "2026-07-28T01:25:16.000Z",
+              "updatedAt": "2026-07-28T01:25:16.000Z",
+              "uid": "35240-12284941-8d0b-4835-b834-327c84975bfc"
+            }
+          ],
+          "id": "1b40de7a-b6d5-4e9d-94b4-ed31819f60d2",
+          "createdAt": "2026-07-28T01:25:16.000Z",
+          "updatedAt": "2026-07-28T01:25:16.000Z",
+          "uid": "35240-1b40de7a-b6d5-4e9d-94b4-ed31819f60d2"
+        }
+      ],
+      "id": "2c3d7f2d-2a84-4bb6-b609-346492ca7a79",
+      "createdAt": "2026-07-28T01:25:16.000Z",
+      "updatedAt": "2026-07-28T01:25:16.000Z",
+      "uid": "35240-2c3d7f2d-2a84-4bb6-b609-346492ca7a79"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://us.api.concursolutions.com"
+    }
+  ]
+}
