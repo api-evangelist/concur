@@ -49,10 +49,6 @@ apis:
   - type: GettingStarted
     url: >-
       https://developer.concur.com/api-reference/expense/expense-report/v4.expenses-get-started.html
-  - type: X-NaftikoCapability
-    url: capabilities/expense-expense-reports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/expense-expenses.yaml
 - aid: concur:travel-api
   name: SAP Concur Travel API
   description: >-
