@@ -1,0 +1,266 @@
+{
+  "item": [
+    {
+      "id": "94e43612-af19-4a67-8a59-1aa4ba5bdad8",
+      "name": "Expenses",
+      "description": {
+        "content": "Manage individual expense entries",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "41d13b01-ecff-4729-91fc-71d18d71bff3",
+          "name": "SAP Concur Get Expenses for Report",
+          "request": {
+            "name": "SAP Concur Get Expenses for Report",
+            "description": {
+              "content": "Retrieves all expense entries for a specific report.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "expensereports",
+                "v4",
+                "reports",
+                ":reportId",
+                "expenses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportId",
+                  "description": "(Required) The unique identifier of the expense report."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8473e044-aefc-4e88-b071-bf73fc8c40d3",
+              "name": "Successfully retrieved expenses.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "expensereports",
+                    "v4",
+                    "reports",
+                    ":reportId",
+                    "expenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The unique identifier of the expense report."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"expenses\": [\n    {\n      \"expenseId\": \"600456\",\n      \"expenseTypeName\": \"Airfare\",\n      \"transactionDate\": \"2026-03-10\",\n      \"transactionAmount\": 875.5,\n      \"transactionCurrencyCode\": \"USD\",\n      \"vendorName\": \"United Airlines\",\n      \"description\": \"Flight from SFO to JFK\",\n      \"receiptRequired\": true\n    },\n    {\n      \"expenseId\": \"600456\",\n      \"expenseTypeName\": \"Airfare\",\n      \"transactionDate\": \"2026-03-10\",\n      \"transactionAmount\": 875.5,\n      \"transactionCurrencyCode\": \"USD\",\n      \"vendorName\": \"United Airlines\",\n      \"description\": \"Flight from SFO to JFK\",\n      \"receiptRequired\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "815686ca-e251-4512-bf08-076a4727da08",
+          "name": "SAP Concur Create Expense Entry",
+          "request": {
+            "name": "SAP Concur Create Expense Entry",
+            "description": {
+              "content": "Creates a new expense entry within an expense report.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "expensereports",
+                "v4",
+                "reports",
+                ":reportId",
+                "expenses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportId",
+                  "description": "(Required) The unique identifier of the expense report."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"expenseTypeName\": \"<string>\",\n  \"transactionDate\": \"<date>\",\n  \"transactionAmount\": \"<double>\",\n  \"transactionCurrencyCode\": \"<string>\",\n  \"vendorName\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4cded4e2-62df-4b06-b425-c1abe29716e5",
+              "name": "Expense entry created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "expensereports",
+                    "v4",
+                    "reports",
+                    ":reportId",
+                    "expenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The unique identifier of the expense report."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"expenseTypeName\": \"Airfare\",\n  \"transactionDate\": \"2026-03-10\",\n  \"transactionAmount\": 875.5,\n  \"transactionCurrencyCode\": \"USD\",\n  \"vendorName\": \"United Airlines\",\n  \"description\": \"Flight from SFO to JFK\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"expenseId\": \"600456\",\n  \"expenseTypeName\": \"Airfare\",\n  \"transactionDate\": \"2026-03-10\",\n  \"transactionAmount\": 875.5,\n  \"transactionCurrencyCode\": \"USD\",\n  \"vendorName\": \"United Airlines\",\n  \"description\": \"Flight from SFO to JFK\",\n  \"receiptRequired\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://us.api.concursolutions.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fb4e476e-0c16-4f0c-9156-5eb9b6f108e9",
+    "name": "SAP Concur Expense Expense Reports Expenses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing expense reports, entries, allocations, and attendees. Supports creating, updating, and submitting expense reports with receipt images, policy validation, and approval workflows.\n\nContact Support:\n Name: SAP Concur Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

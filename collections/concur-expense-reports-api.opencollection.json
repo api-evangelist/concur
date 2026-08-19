@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SAP Concur Expense Expense Reports API",
+    "version": "4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Expense Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "SAP Concur Get Expense Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://us.api.concursolutions.com/expensereports/v4/users/:userId/context/:contextType/reports",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the user."
+              },
+              {
+                "name": "contextType",
+                "value": "",
+                "type": "path",
+                "description": "The context type for the reports (TRAVELER, PROXY, etc.)."
+              }
+            ]
+          },
+          "docs": "Retrieves all expense reports for the specified user and context."
+        },
+        {
+          "info": {
+            "name": "SAP Concur Create Expense Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us.api.concursolutions.com/expensereports/v4/users/:userId/context/:contextType/reports",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the user."
+              },
+              {
+                "name": "contextType",
+                "value": "",
+                "type": "path",
+                "description": "The context type for the report."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new expense report for the specified user."
+        },
+        {
+          "info": {
+            "name": "SAP Concur Get Expense Report by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://us.api.concursolutions.com/expensereports/v4/reports/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the expense report."
+              }
+            ]
+          },
+          "docs": "Retrieves a specific expense report by its identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
