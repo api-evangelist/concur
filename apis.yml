@@ -4,6 +4,18 @@ description: SAP Concur provides a comprehensive suite of REST APIs for travel, 
   API platform enables integration with expense reporting, travel booking, invoice processing, receipt capture, and user management
   services used by enterprises worldwide for spend management automation.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
