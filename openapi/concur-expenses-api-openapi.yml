@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: SAP Concur Expense Expense Reports Expenses API
   description: REST API for managing expense reports, entries, allocations, and attendees. Supports creating, updating, and submitting expense reports with receipt images, policy validation, and approval workflows.
@@ -74,6 +74,14 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ExpenseCollection:
+      type: object
+      description: Collection of expense entries.
+      properties:
+        expenses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Expense'
     Expense:
       type: object
       description: An individual expense entry.
@@ -112,14 +120,6 @@ components:
           type: boolean
           description: Whether a receipt is required.
           example: true
-    ExpenseCollection:
-      type: object
-      description: Collection of expense entries.
-      properties:
-        expenses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Expense'
     ExpenseCreate:
       type: object
       description: Request body for creating an expense entry.
