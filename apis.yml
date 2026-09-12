@@ -198,6 +198,8 @@ apis:
   - type: OpenAPI
     url: openapi/concur-expenses-api-openapi.yml
 common:
+- type: Website
+  url: https://www.concur.com/
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/sap-concur/overview
 - type: AgenticAccess

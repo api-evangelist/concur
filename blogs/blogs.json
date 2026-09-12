@@ -2,22 +2,22 @@
   "repo": "concur",
   "feeds": [
     {
-      "source": "https://developer.concur.com/feed.xml",
-      "feed_url": "https://developer.concur.com/feed.xml",
-      "title": "",
-      "saved": 0,
-      "method": "feed"
-    },
-    {
       "source": "https://developer.concur.com/api-reference/authentication/apidoc.html",
       "feed_url": "https://developer.concur.com/feed.xml",
       "title": "",
       "saved": 0,
       "method": "discovered"
+    },
+    {
+      "source": "https://developer.concur.com/feed.xml",
+      "feed_url": "https://developer.concur.com/feed.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
     }
   ],
   "post_count": 72,
-  "fetched": "2026-08-30T22:33:40Z",
+  "fetched": "2026-09-06T19:17:18Z",
   "note": "www.concur.com/blog/feed/ 403, developer.concur.com/feed.xml returned empty channel, www.concur.com/blog 403",
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",
