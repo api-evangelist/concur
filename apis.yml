@@ -37,6 +37,12 @@ specificationVersion: '0.23'
 tags:
 - Expense Management
 - Finance
+- Invoices
+- SAP
+- Travel
+tags_raw:
+- Expense Management
+- Finance
 - Invoice
 - SAP
 - Travel
@@ -69,6 +75,11 @@ apis:
   humanURL: https://developer.concur.com/api-reference/travel/
   baseURL: https://us.api.concursolutions.com/travel/
   tags:
+  - Booking
+  - Itineraries
+  - REST
+  - Travel
+  tags_raw:
   - Bookings
   - Itineraries
   - REST
