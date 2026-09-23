@@ -1,8 +1,7 @@
 {
   "provider": "concur",
   "sources": [
-    "concur-expense-reports-api-openapi.yml",
-    "concur-expenses-api-openapi.yml"
+    "_ae-authored/concur-expense-api.yaml"
   ],
   "outputs": [
     "concur-expense-reports-api-openapi.yml",
@@ -12,9 +11,12 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "concur-expense-reports-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "concur-expenses-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "concur-expense-api.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "concur-expense-reports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "concur-expenses-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

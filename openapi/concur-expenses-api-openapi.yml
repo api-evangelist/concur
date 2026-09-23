@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: SAP Concur Expense Expense Reports Expenses API
+  title: SAP Concur Expense Expenses API
   description: REST API for managing expense reports, entries, allocations, and attendees. Supports creating, updating, and submitting expense reports with receipt images, policy validation, and approval workflows.
   version: '4.0'
   contact:
@@ -74,6 +74,41 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ExpenseCreate:
+      type: object
+      description: Request body for creating an expense entry.
+      required:
+      - expenseTypeName
+      - transactionDate
+      - transactionAmount
+      - transactionCurrencyCode
+      properties:
+        expenseTypeName:
+          type: string
+          description: Name of the expense type.
+          example: Airfare
+        transactionDate:
+          type: string
+          format: date
+          description: Date of the transaction.
+          example: '2026-03-10'
+        transactionAmount:
+          type: number
+          format: double
+          description: Amount of the transaction.
+          example: 875.5
+        transactionCurrencyCode:
+          type: string
+          description: Currency code.
+          example: USD
+        vendorName:
+          type: string
+          description: Name of the vendor.
+          example: United Airlines
+        description:
+          type: string
+          description: Description of the expense.
+          example: Flight from SFO to JFK
     ExpenseCollection:
       type: object
       description: Collection of expense entries.
@@ -120,41 +155,6 @@ components:
           type: boolean
           description: Whether a receipt is required.
           example: true
-    ExpenseCreate:
-      type: object
-      description: Request body for creating an expense entry.
-      required:
-      - expenseTypeName
-      - transactionDate
-      - transactionAmount
-      - transactionCurrencyCode
-      properties:
-        expenseTypeName:
-          type: string
-          description: Name of the expense type.
-          example: Airfare
-        transactionDate:
-          type: string
-          format: date
-          description: Date of the transaction.
-          example: '2026-03-10'
-        transactionAmount:
-          type: number
-          format: double
-          description: Amount of the transaction.
-          example: 875.5
-        transactionCurrencyCode:
-          type: string
-          description: Currency code.
-          example: USD
-        vendorName:
-          type: string
-          description: Name of the vendor.
-          example: United Airlines
-        description:
-          type: string
-          description: Description of the expense.
-          example: Flight from SFO to JFK
   securitySchemes:
     bearerAuth:
       type: http
