@@ -109,14 +109,6 @@ components:
           type: string
           description: Description of the expense.
           example: Flight from SFO to JFK
-    ExpenseCollection:
-      type: object
-      description: Collection of expense entries.
-      properties:
-        expenses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Expense'
     Expense:
       type: object
       description: An individual expense entry.
@@ -155,6 +147,14 @@ components:
           type: boolean
           description: Whether a receipt is required.
           example: true
+    ExpenseCollection:
+      type: object
+      description: Collection of expense entries.
+      properties:
+        expenses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Expense'
   securitySchemes:
     bearerAuth:
       type: http
