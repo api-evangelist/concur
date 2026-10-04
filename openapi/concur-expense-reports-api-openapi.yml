@@ -171,6 +171,14 @@ components:
           format: date
           description: Date of the report.
           example: '2026-03-15'
+    ExpenseReportCollection:
+      type: object
+      description: Collection of expense reports.
+      properties:
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExpenseReport'
     ExpenseReport:
       type: object
       description: An expense report containing expense entries.
@@ -224,14 +232,6 @@ components:
           format: date
           description: Date of the report.
           example: '2026-03-15'
-    ExpenseReportCollection:
-      type: object
-      description: Collection of expense reports.
-      properties:
-        reports:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExpenseReport'
   securitySchemes:
     bearerAuth:
       type: http
