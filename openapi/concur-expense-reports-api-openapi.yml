@@ -1,20 +1,22 @@
 openapi: 3.2.0
 info:
-  title: SAP Concur Expense Expense Reports API
-  description: REST API for managing expense reports, entries, allocations, and attendees. Supports creating, updating, and submitting expense reports with receipt images, policy validation, and approval workflows.
-  version: '4.0'
-  contact:
-    name: SAP Concur Developer Support
-    url: https://developer.concur.com/
-  x-generated-from: documentation
-  x-last-validated: '2026-04-18'
+  title: Concur Expense Reports API
+  x-refined-note:
+  - x-generated-from differs across the merged source definitions and was not carried
+  - x-last-validated differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged Expense Reports across 2 of this provider''s published API definitions: concur-expense-api.yaml, sap-concur-expense-expense-reports-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://us.api.concursolutions.com
   description: US Production
 - url: https://emea.api.concursolutions.com
   description: EMEA Production
-security:
-- bearerAuth: []
+- url: https://us.api.concursolutions.com/api/v3.0
+  description: United States Production
+- url: https://eu.api.concursolutions.com/api/v3.0
+  description: Europe Production
+- url: https://cn.api.concursolutions.com/api/v3.0
+  description: China Production
 tags:
 - name: Expense Reports
   description: Manage expense reports
@@ -68,6 +70,8 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      security:
+      - bearerAuth: []
     post:
       operationId: createExpenseReport
       summary: SAP Concur Create Expense Report
@@ -115,6 +119,13 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://us.api.concursolutions.com
+      description: US Production
+    - url: https://emea.api.concursolutions.com
+      description: EMEA Production
   /expensereports/v4/reports/{reportId}:
     get:
       operationId: getExpenseReport
@@ -141,44 +152,233 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://us.api.concursolutions.com
+      description: US Production
+    - url: https://emea.api.concursolutions.com
+      description: EMEA Production
+  /expense/reports:
+    get:
+      operationId: listExpenseReports
+      summary: List Expense Reports
+      description: Returns a collection of expense reports belonging to the current user or accessible via company-level access. Supports filtering by approval status, submission date, payment status, and reimbursement method.
+      tags:
+      - Expense Reports
+      parameters:
+      - name: offset
+        in: query
+        description: Starting page offset for pagination
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of records to return per page (max 100)
+        required: false
+        schema:
+          type: integer
+          maximum: 100
+      - name: approvalStatusCode
+        in: query
+        description: 'Filter by approval status code. Valid values: A_AAFH, A_AAPH, A_ADMIN, A_APPR, A_EXTV, A_FILE, A_NOTF, A_PBDG, A_PECO, A_PEND, A_PVAL, A_RESU, A_RHLD, A_TEXP'
+        required: false
+        schema:
+          type: string
+      - name: paymentStatusCode
+        in: query
+        description: 'Filter by payment status code. Valid values: P_HOLD, P_NOTP, P_PAID, P_PAYC, P_PROC'
+        required: false
+        schema:
+          type: string
+      - name: modifiedDateBefore
+        in: query
+        description: Return reports modified before this date (ISO 8601 format)
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: modifiedDateAfter
+        in: query
+        description: Return reports modified after this date (ISO 8601 format)
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: userID
+        in: query
+        description: The login ID of the report owner. May only be used by company-level access token holders.
+        required: false
+        schema:
+          type: string
+      - name: reimbursementMethod
+        in: query
+        description: 'Filter by reimbursement method. Valid values: ADPPAYR, APCHECK, AVI, CNQRPAY, PMTSERV'
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success - Returns list of expense reports
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpenseReportCollection_2'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      security:
+      - OAuth2:
+        - expense.report.read
+        - expense.report.write
+    post:
+      operationId: postExpenseReports
+      summary: Create Expense Report
+      description: Creates a new expense report header. After creating the report header, expense entries can be added using the expense entries endpoint.
+      tags:
+      - Expense Reports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpenseReportCreate_2'
+      responses:
+        '200':
+          description: Success - Returns the created expense report ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpenseReportCreateResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      security:
+      - OAuth2:
+        - expense.report.read
+        - expense.report.write
+      x-operation-id-source: normalized
+      x-operation-id-original: createExpenseReport
+    servers:
+    - url: https://us.api.concursolutions.com/api/v3.0
+      description: United States Production
+    - url: https://eu.api.concursolutions.com/api/v3.0
+      description: Europe Production
+    - url: https://cn.api.concursolutions.com/api/v3.0
+      description: China Production
+  /expense/reports/{id}:
+    get:
+      operationId: getExpenseReportsById
+      summary: Get Expense Report
+      description: Returns a single expense report by its ID. Includes report header information such as approval status, totals, and submission date.
+      tags:
+      - Expense Reports
+      parameters:
+      - name: id
+        in: path
+        description: The unique identifier of the expense report
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success - Returns the expense report
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpenseReport_2'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      security:
+      - OAuth2:
+        - expense.report.read
+        - expense.report.write
+      x-operation-id-source: normalized
+      x-operation-id-original: getExpenseReport
+    put:
+      operationId: updateExpenseReport
+      summary: Update Expense Report
+      description: Updates an existing expense report header. Only draft reports (not yet submitted) can be updated.
+      tags:
+      - Expense Reports
+      parameters:
+      - name: id
+        in: path
+        description: The unique identifier of the expense report
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpenseReportUpdate'
+      responses:
+        '204':
+          description: Success - No content returned
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      security:
+      - OAuth2:
+        - expense.report.read
+        - expense.report.write
+    delete:
+      operationId: deleteExpenseReport
+      summary: Delete Expense Report
+      description: Deletes an expense report. Only draft reports that have never been submitted can be deleted.
+      tags:
+      - Expense Reports
+      parameters:
+      - name: id
+        in: path
+        description: The unique identifier of the expense report
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Success - No content returned
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      security:
+      - OAuth2:
+        - expense.report.read
+        - expense.report.write
+    servers:
+    - url: https://us.api.concursolutions.com/api/v3.0
+      description: United States Production
+    - url: https://eu.api.concursolutions.com/api/v3.0
+      description: Europe Production
+    - url: https://cn.api.concursolutions.com/api/v3.0
+      description: China Production
 components:
   schemas:
-    ExpenseReportCreate:
-      type: object
-      description: Request body for creating a new expense report.
-      required:
-      - reportName
-      - currencyCode
-      properties:
-        reportName:
-          type: string
-          description: Name of the expense report.
-          example: Q1 Travel Expenses
-        businessPurpose:
-          type: string
-          description: Business purpose for the expenses.
-          example: Client meetings in New York
-        countryCode:
-          type: string
-          description: ISO country code.
-          example: US
-        currencyCode:
-          type: string
-          description: ISO 4217 currency code.
-          example: USD
-        reportDate:
-          type: string
-          format: date
-          description: Date of the report.
-          example: '2026-03-15'
-    ExpenseReportCollection:
-      type: object
-      description: Collection of expense reports.
-      properties:
-        reports:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExpenseReport'
     ExpenseReport:
       type: object
       description: An expense report containing expense entries.
@@ -232,8 +432,170 @@ components:
           format: date
           description: Date of the report.
           example: '2026-03-15'
+    ExpenseReportCollection:
+      type: object
+      description: Collection of expense reports.
+      properties:
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExpenseReport'
+    ExpenseReportCreate:
+      type: object
+      description: Request body for creating a new expense report.
+      required:
+      - reportName
+      - currencyCode
+      properties:
+        reportName:
+          type: string
+          description: Name of the expense report.
+          example: Q1 Travel Expenses
+        businessPurpose:
+          type: string
+          description: Business purpose for the expenses.
+          example: Client meetings in New York
+        countryCode:
+          type: string
+          description: ISO country code.
+          example: US
+        currencyCode:
+          type: string
+          description: ISO 4217 currency code.
+          example: USD
+        reportDate:
+          type: string
+          format: date
+          description: Date of the report.
+          example: '2026-03-15'
+    ExpenseReportUpdate:
+      type: object
+      properties:
+        Name:
+          type: string
+          description: Updated name for the expense report
+        Comment:
+          type: string
+          description: Updated comment
+        Purpose:
+          type: string
+          description: Updated business purpose
+    ExpenseReportCollection_2:
+      type: object
+      properties:
+        Items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExpenseReport_2'
+        NextPage:
+          type: string
+          description: URL to the next page of results
+    ExpenseReport_2:
+      type: object
+      properties:
+        ID:
+          type: string
+          description: The unique identifier of the expense report
+        Name:
+          type: string
+          description: The name of the expense report
+        Total:
+          type: number
+          format: double
+          description: Total amount of all expenses in the report
+        CurrencyCode:
+          type: string
+          description: ISO 4217 currency code for the report total
+        ApprovalStatusCode:
+          type: string
+          description: Current approval status code
+        ApprovalStatusName:
+          type: string
+          description: Human-readable approval status name
+        PaymentStatusCode:
+          type: string
+          description: Current payment status code
+        PaymentStatusName:
+          type: string
+          description: Human-readable payment status name
+        SubmitDate:
+          type: string
+          format: date-time
+          description: Date the report was submitted for approval
+        CreateDate:
+          type: string
+          format: date-time
+          description: Date the report was created
+        ProcessingPaymentDate:
+          type: string
+          format: date-time
+          description: Date payment processing began
+        OwnerLoginID:
+          type: string
+          description: Login ID of the report owner
+        OwnerName:
+          type: string
+          description: Full name of the report owner
+        PolicyID:
+          type: string
+          description: The expense policy ID applied to this report
+        ReportNumber:
+          type: string
+          description: Human-readable report number
+        HasException:
+          type: boolean
+          description: Whether the report has policy exceptions
+        URI:
+          type: string
+          description: URI to retrieve this resource
+    ExpenseReportCreate_2:
+      type: object
+      required:
+      - Name
+      properties:
+        Name:
+          type: string
+          description: The name of the expense report
+        Comment:
+          type: string
+          description: Additional comments for the report
+        PolicyID:
+          type: string
+          description: The expense policy ID to apply
+        Purpose:
+          type: string
+          description: Business purpose for the expenses
+        UserDefinedDate:
+          type: string
+          format: date-time
+          description: User-defined date for the report
+    ExpenseReportCreateResponse:
+      type: object
+      properties:
+        ID:
+          type: string
+          description: The unique identifier of the created expense report
+        URI:
+          type: string
+          description: URI of the created resource
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       description: OAuth 2.0 Bearer Token authentication.
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://us.api.concursolutions.com/oauth2/v0/authorize
+          tokenUrl: https://us.api.concursolutions.com/oauth2/v0/token
+          scopes:
+            expense.report.read: Read expense reports
+            expense.report.write: Create and modify expense reports
+            expense.report.delete: Delete expense reports
+externalDocs:
+  description: SAP Concur Expense API Reference
+  url: https://developer.concur.com/api-reference/expense/
+x-refined-from:
+- concur-expense-api.yaml
+- sap-concur-expense-expense-reports-api-openapi.yml

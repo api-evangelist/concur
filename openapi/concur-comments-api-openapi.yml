@@ -288,54 +288,72 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    NotFound:
+      description: The requested resource (report, expense, allocation, or user) was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: The authenticated user does not have the required scope or permission to perform this operation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: An unexpected server error occurred. Retry the request or contact SAP Concur support with the Concur-CorrelationId header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed. The bearer token is missing, expired, or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request was malformed or contained invalid parameters. Check the validationErrors array for field-level details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    reportId:
+      name: reportId
+      in: path
+      required: true
+      description: The unique identifier of the expense report
+      schema:
+        type: string
+    contextType:
+      name: contextType
+      in: path
+      required: true
+      description: The access context for the request. TRAVELER for the report owner, MANAGER for an approver, PROXY for a delegate.
+      schema:
+        type: string
+        enum:
+        - TRAVELER
+        - MANAGER
+        - PROXY
+    expenseId:
+      name: expenseId
+      in: path
+      required: true
+      description: The unique identifier of the expense entry
+      schema:
+        type: string
+    userID:
+      name: userID
+      in: path
+      required: true
+      description: The unique identifier (UUID) of the SAP Concur user. Obtain via the Identity v4 API.
+      schema:
+        type: string
+        format: uuid
   schemas:
-    ResourceCreatedResponse:
-      type: object
-      description: Response returned when a resource is successfully created
-      properties:
-        uri:
-          type: string
-          format: uri
-          description: The URI of the newly created resource
-          example: https://www.example.com
-    ErrorResponse:
-      type: object
-      description: Standard error response
-      properties:
-        errorId:
-          type: string
-          description: Unique identifier for this error occurrence
-          example: '500123'
-        errorMessage:
-          type: string
-          description: Human-readable error description
-          example: example_value
-        httpStatus:
-          type: string
-          description: The HTTP status code as a string
-          example: example_value
-        path:
-          type: string
-          description: The request path that triggered the error
-          example: example_value
-        timestamp:
-          type: string
-          format: date-time
-          description: When the error occurred
-          example: '2026-01-15T10:30:00Z'
-        validationErrors:
-          type: array
-          description: Detailed field-level validation failures
-          items:
-            type: object
-            properties:
-              source:
-                type: string
-                description: The field or parameter that failed validation
-              message:
-                type: string
-                description: Description of the validation failure
-          example: []
     Comment:
       type: object
       description: A comment on a report or expense
@@ -382,71 +400,53 @@ components:
           type: string
           description: The comment text content
           example: example_value
-  responses:
-    NotFound:
-      description: The requested resource (report, expense, allocation, or user) was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: An unexpected server error occurred. Retry the request or contact SAP Concur support with the Concur-CorrelationId header.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: The authenticated user does not have the required scope or permission to perform this operation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed. The bearer token is missing, expired, or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: The request was malformed or contained invalid parameters. Check the validationErrors array for field-level details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    contextType:
-      name: contextType
-      in: path
-      required: true
-      description: The access context for the request. TRAVELER for the report owner, MANAGER for an approver, PROXY for a delegate.
-      schema:
-        type: string
-        enum:
-        - TRAVELER
-        - MANAGER
-        - PROXY
-    userID:
-      name: userID
-      in: path
-      required: true
-      description: The unique identifier (UUID) of the SAP Concur user. Obtain via the Identity v4 API.
-      schema:
-        type: string
-        format: uuid
-    expenseId:
-      name: expenseId
-      in: path
-      required: true
-      description: The unique identifier of the expense entry
-      schema:
-        type: string
-    reportId:
-      name: reportId
-      in: path
-      required: true
-      description: The unique identifier of the expense report
-      schema:
-        type: string
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        errorId:
+          type: string
+          description: Unique identifier for this error occurrence
+          example: '500123'
+        errorMessage:
+          type: string
+          description: Human-readable error description
+          example: example_value
+        httpStatus:
+          type: string
+          description: The HTTP status code as a string
+          example: example_value
+        path:
+          type: string
+          description: The request path that triggered the error
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          description: When the error occurred
+          example: '2026-01-15T10:30:00Z'
+        validationErrors:
+          type: array
+          description: Detailed field-level validation failures
+          items:
+            type: object
+            properties:
+              source:
+                type: string
+                description: The field or parameter that failed validation
+              message:
+                type: string
+                description: Description of the validation failure
+          example: []
+    ResourceCreatedResponse:
+      type: object
+      description: Response returned when a resource is successfully created
+      properties:
+        uri:
+          type: string
+          format: uri
+          description: The URI of the newly created resource
+          example: https://www.example.com
   securitySchemes:
     bearerAuth:
       type: http

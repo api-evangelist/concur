@@ -1,19 +1,56 @@
 {
   "provider": "concur",
   "sources": [
-    "_ae-authored/concur-expense-api.yaml"
+    "_ae-authored/concur-expense-api.yaml",
+    "sap-concur-allocations-api-openapi.yml",
+    "sap-concur-comments-api-openapi.yml",
+    "sap-concur-expense-allocations-api-openapi.yml",
+    "sap-concur-expense-expense-entries-api-openapi.yml",
+    "sap-concur-expense-expense-reports-api-openapi.yml",
+    "sap-concur-expense-group-configurations-api-openapi.yml",
+    "sap-concur-expense-payment-batches-api-openapi.yml",
+    "sap-concur-expense-quick-expenses-api-openapi.yml",
+    "sap-concur-expense-receipt-images-api-openapi.yml",
+    "sap-concur-expenses-api-openapi.yml",
+    "sap-concur-reports-api-openapi.yml",
+    "sap-concur-workflows-api-openapi.yml"
   ],
   "outputs": [
     "concur-expense-reports-api-openapi.yml",
-    "concur-expenses-api-openapi.yml"
+    "concur-expenses-api-openapi.yml",
+    "concur-allocations-api-openapi.yml",
+    "concur-comments-api-openapi.yml",
+    "concur-expense-entries-api-openapi.yml",
+    "concur-group-configurations-api-openapi.yml",
+    "concur-payment-batches-api-openapi.yml",
+    "concur-quick-expenses-api-openapi.yml",
+    "concur-receipt-images-api-openapi.yml",
+    "concur-reports-api-openapi.yml",
+    "concur-workflows-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "archived openapi/sap-concur-allocations-api-openapi.yml",
+    "archived openapi/sap-concur-comments-api-openapi.yml",
+    "archived openapi/sap-concur-expense-allocations-api-openapi.yml",
+    "archived openapi/sap-concur-expense-expense-entries-api-openapi.yml",
+    "archived openapi/sap-concur-expense-expense-reports-api-openapi.yml",
+    "archived openapi/sap-concur-expense-group-configurations-api-openapi.yml",
+    "archived openapi/sap-concur-expense-payment-batches-api-openapi.yml",
+    "archived openapi/sap-concur-expense-quick-expenses-api-openapi.yml",
+    "archived openapi/sap-concur-expense-receipt-images-api-openapi.yml",
+    "archived openapi/sap-concur-expenses-api-openapi.yml",
+    "archived openapi/sap-concur-reports-api-openapi.yml",
+    "archived openapi/sap-concur-workflows-api-openapi.yml"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
     "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "concur-expense-api.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apis.yml register: already-registered"
+    "tag 'Expense Reports' spans 2 source specs (concur-expense-api.yaml, sap-concur-expense-expense-reports-api-openapi.yml): per-path servers applied",
+    "tag 'Expenses' spans 2 source specs (concur-expense-api.yaml, sap-concur-expenses-api-openapi.yml): per-path servers applied",
+    "tag 'Allocations' spans 2 source specs (sap-concur-allocations-api-openapi.yml, sap-concur-expense-allocations-api-openapi.yml): per-path servers applied",
+    "apis.yml register: written (+9 apis, 50 total)"
   ],
   "skipped": [
     "concur-expense-reports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
