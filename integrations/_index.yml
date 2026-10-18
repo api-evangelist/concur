@@ -61,5 +61,5 @@
     - connectors/applications/sap-concur
     vendor_link: https://www.concur.com/
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
