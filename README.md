@@ -1,4 +1,4 @@
-# SAP Concur (concur)
+# SAP Concur
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,126 +64,229 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-SAP Concur provides a comprehensive suite of REST APIs for travel, expense, and invoice management. The Concur API platform enables integration with expense reporting, travel booking, invoice processing, receipt capture, and user management services.
+SAP Concur provides a comprehensive suite of REST APIs for travel, expense, and invoice management. The Concur API platform enables integration with expense reporting, travel booking, invoice processing, receipt capture, and user management services used by enterprises worldwide for spend management automation.
 
-**URL:** [https://raw.githubusercontent.com/api-evangelist/concur/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/concur/refs/heads/main/apis.yml)
+**Areas:** Expense Management · Finance · Invoices · SAP · Travel · Business Travel · Financial Services · Invoice Management · Travel Management · Financial Management · Receipts · Reimbursement
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## SAP Concur on APIs.io
 
-## Tags:
+Everything profiled for SAP Concur is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/concur/](https://apis.io/providers/concur/)** — or go straight to one of the APIs or properties below.
 
- - Expense Management, Finance, Invoice, SAP, Travel
+### APIs (50)
 
-## Timestamps
+- [SAP Concur Expense API](https://apis.io/apis/concur/expense-api/) — REST API for managing expense reports, entries, allocations, and attendees. Supports creating, updating, and submitting expense reports with receipt images,…
+- [SAP Concur Travel API](https://apis.io/apis/concur/travel-api/) — REST API for managing travel itineraries, bookings, and travel profiles. Supports searching for travel options, creating bookings, and managing travel…
+- [SAP Concur Invoice API](https://apis.io/apis/concur/invoice-api/) — REST API for accounts payable invoice processing including purchase requests, vendor management, payment batches, and invoice approval workflows.
+- [SAP Concur Receipts API](https://apis.io/apis/concur/receipts-api/) — REST API for submitting and managing digital receipts from e-commerce providers, ground transportation, hotels, and other merchants directly to Concur expense.
+- [SAP Concur Request API](https://apis.io/apis/concur/request-api/) — REST API for managing pre-trip travel requests and approvals, enabling employees to submit travel requests for authorization before booking.
+- [SAP Concur User Provisioning API](https://apis.io/apis/concur/user-provisioning-api/) — SCIM 2.0-compliant API for provisioning and managing Concur user accounts, roles, and profile information with support for bulk operations.
+- [SAP Concur Events API](https://apis.io/apis/concur/events-api/) — Event subscription API enabling applications to receive real-time notifications when events occur in Concur such as expense report submissions, approvals,…
+- [SAP Concur Lists API](https://apis.io/apis/concur/lists-api/) — REST API for managing custom lists and list items used in expense forms, travel policies, and invoice configurations for dropdown and lookup fields.
+- [SAP Concur Expense Reports API](https://apis.io/apis/concur/concur-expense-reports-api/) — Manage expense reports
+- [SAP Concur Expenses API](https://apis.io/apis/concur/concur-expenses-api/) — Manage individual expense entries
+- [Concur User Provisioning API](https://apis.io/apis/concur/concur-user-provisioning-api/) — Manages user accounts and profiles, including creating, updating, and retrieving user information. Supports provisioning across Identity, Spend, and Travel…
+- [Concur Receipt API](https://apis.io/apis/concur/concur-receipt-api/) — Allows for the submission and management of digital receipts within Concur Expense.
+- [Concur Budget API](https://apis.io/apis/concur/concur-budget-api/) — Exposes budget and fiscal year data, enabling partners and clients to read and manage fiscal years, budget categories, budget items, budget tracking fields,…
+- [Concur Cards API](https://apis.io/apis/concur/concur-cards-api/) — Provides an automated integration pathway for certified partner financial networks, issuing banks, and fin-tech partners to submit credit card account and…
+- [Concur Quick Expense API](https://apis.io/apis/concur/concur-quick-expense-api/) — Enables the creation of expenses with minimal information such as date, amount, and expense type, with or without a receipt image. Supports attaching…
+- [Concur Exchange Rate API](https://apis.io/apis/concur/concur-exchange-rate-api/) — Allows users to create custom exchange rates for a company, supporting bulk uploads of exchange rate data for specified currency pairs and effective dates…
+- [Concur Financial Integration API](https://apis.io/apis/concur/concur-financial-integration-api/) — Allows an external system to interact with financial documents generated from SAP Concur for financial posting into an ERP, providing an automated solution…
+- [Concur Identity API](https://apis.io/apis/concur/concur-identity-api/) — Creates, updates, and reads user core identity profiles following the SCIM 2.0 standard. Enables looking up SAP Concur UUIDs for accessing other v4 APIs for…
+- [Concur Event Subscription Service API](https://apis.io/apis/concur/concur-event-subscription-service-api/) — Implements the Publish/Subscribe pattern using principles of Event Driven Architecture, notifying clients and partners when specific business events occur…
+- [Concur Callouts API](https://apis.io/apis/concur/concur-callouts-api/) — Allows clients to add interactions with outside systems to their users SAP Concur experience through application connectors, supporting attendee data fetch,…
+- [Concur Direct Connect Hotel Service API](https://apis.io/apis/concur/concur-direct-connect-hotel-service-api/) — Provides a method for custom hotel source suppliers to provide hotel inventory, rates, and booking related functionality to SAP Concur Online Booking Tool,…
+- [Concur Direct Connect Ground Transportation API](https://apis.io/apis/concur/concur-direct-connect-ground-transportation-api/) — Enables travel users to access ground transportation inventory from service providers, supporting search, reservation, cancellation, and update operations…
+- [Concur Spend Documents API](https://apis.io/apis/concur/concur-spend-documents-api/) — Facilitates ingestion and retrieval of receipt documents for use within Concur Expense, enabling users to create and retrieve simple receipts by uploading…
+- [Concur List Item API](https://apis.io/apis/concur/concur-list-item-api/) — Provides an automated solution for retrieving, adding, updating, and deleting list items within SAP Concur, supporting hierarchical list structures with…
+- [Concur Lists API](https://apis.io/apis/concur/concur-lists-api/) — Enables viewing configured lists within SAP Concur products and creating new lists, supporting shared lists across Expense, Invoice, and Request…
+- [Concur Travel Profile API](https://apis.io/apis/concur/concur-travel-profile-api/) — Enables retrieval of travel profile information for specified users and lists of travel profile summaries, available to developers, travel suppliers, and…
+- [Concur Travel Allowance API](https://apis.io/apis/concur/concur-travel-allowance-api/) — Allows extraction of travel allowance information from the SAP Concur platform, providing the ability to read travel allowance itinerary data, calculation…
+- [Concur Cash Advance API](https://apis.io/apis/concur/concur-cash-advance-api/) — Enables users to create, view, and issue cash advances within Concur Expense. Supports single cash advance creation, retrieval, and issuance operations for…
+- [Concur Purchase Order API](https://apis.io/apis/concur/concur-purchase-order-api/) — Gives SAP Concur clients the ability to leverage external data to create and update approved purchase orders. Enables direct connections to manage purchase…
+- [Concur Purchase Request API](https://apis.io/apis/concur/concur-purchase-request-api/) — Enables SAP Concur clients to leverage external data to create purchase requests for pre-authorization of purchase orders. Organizations can establish…
+- [Concur Vendor API](https://apis.io/apis/concur/concur-vendor-api/) — Provides processes for managing vendor collections used in invoicing, including adding new vendors, updating, retrieving, and deleting information for…
+- [Concur Sales Tax Validation API](https://apis.io/apis/concur/concur-sales-tax-validation-api/) — Enables retrieval and updating of invoices for tax calculation purposes, allowing external tax systems to fetch invoices requiring tax assessment and submit…
+- [Concur Document Compliance Gateway API](https://apis.io/apis/concur/concur-document-compliance-gateway-api/) — Manages transmission of compliance documents between SAP Concur and validating vendors, enabling vendors to exchange compliance documents, validate them…
+- [Concur Image API](https://apis.io/apis/concur/concur-image-api/) — Enables clients to manage receipt images attached to expense reports and images associated with invoices. Users can retrieve existing images by report ID,…
+- [Concur Travel Receipts API](https://apis.io/apis/concur/concur-travel-receipts-api/) — Exposes receipt requests to inform E-Receipt partners which E-Receipts to send to SAP Concur and for which user. Partners receive paginated responses and…
+- [Concur Locations API](https://apis.io/apis/concur/concur-locations-api/) — Retrieves details about locations used by Concur that are valid at a user's company. Supports filtering by name, city, country, and other geographic…
+- [Concur Expense Attendee Types API](https://apis.io/apis/concur/concur-expense-attendee-types-api/) — Provides access to the configured attendee types within SAP Concur, allowing retrieval and management of attendee type resources used for categorizing…
+- [Digital Tax Invoice API](https://apis.io/apis/concur/digital-tax-invoice-api/) — Retrieve digital tax invoice data associated with expense entries for compliance and auditing in jurisdictions that require electronic invoicing…
+- [Expense Group Configuration API](https://apis.io/apis/concur/expense-group-configuration-api/) — Retrieve expense group configurations including expense types, expense policies, payment types, and workflow settings. Used to dynamically configure expense…
+- [Expense Allocations API](https://apis.io/apis/concur/expense-allocations-api/) — Manage allocation of expenses across multiple cost centers, projects, departments, or GL accounts. Supports percentage-based and amount-based allocation…
+- [Payment Batch v1 API](https://apis.io/apis/concur/payment-batch-v1-api/) — Retrieve and manage payment batches for processed expense reports ready for reimbursement. Provides visibility into batch payment status, amounts, and payee…
+- [SAP Concur Allocations API](https://apis.io/apis/concur/concur-allocations-api/) — Operations for retrieving and updating expense allocations, which distribute expense amounts across cost centers or accounts.
+- [SAP Concur Comments API](https://apis.io/apis/concur/concur-comments-api/) — Operations for creating, retrieving, updating, and deleting comments at the report header or individual expense level.
+- [SAP Concur Expense Entries API](https://apis.io/apis/concur/concur-expense-entries-api/) — Manage individual expense line items within expense reports including itemizations, attendees, and custom fields.
+- [SAP Concur Group Configurations API](https://apis.io/apis/concur/concur-group-configurations-api/) — Retrieve expense group policy configurations including expense types, payment types, and workflow settings.
+- [SAP Concur Payment Batches API](https://apis.io/apis/concur/concur-payment-batches-api/) — Retrieve payment batch information for approved expense reports ready for reimbursement processing.
+- [SAP Concur Quick Expenses API](https://apis.io/apis/concur/concur-quick-expenses-api/) — Create and manage quick expenses captured outside of a formal report. Quick expenses can be promoted to full expense report entries.
+- [SAP Concur Receipt Images API](https://apis.io/apis/concur/concur-receipt-images-api/) — Upload and retrieve receipt images associated with expense entries. Supports PNG, JPG, PDF, and TIFF image formats.
+- [SAP Concur Reports API](https://apis.io/apis/concur/concur-reports-api/) — Operations for creating, retrieving, updating, and deleting expense reports, as well as retrieving reports pending approval.
+- [SAP Concur Workflows API](https://apis.io/apis/concur/concur-workflows-api/) — Operations for submitting, approving, recalling, and sending back expense reports through the approval workflow.
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-04-18
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### SAP Concur Expense API
-REST API for managing expense reports, entries, allocations, and attendees.
+#### Agentic access (1)
 
-### SAP Concur Travel API
-REST API for managing travel itineraries and bookings.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### SAP Concur Invoice API
-REST API for accounts payable invoice processing.
+- [Concur Agentic Access](https://apis.io/agentic-access/concur/concur-agentic-access/)
 
-### SAP Concur Receipts API
-REST API for submitting and managing digital receipts.
+#### JSON Schema (9)
 
-### SAP Concur Request API
-REST API for managing pre-trip travel requests.
+The data models the API reads and writes.
 
-### SAP Concur User Provisioning API
-SCIM 2.0-compliant user provisioning API.
+- [Expense](https://apis.io/schemas/concur/concur-expense/)
+- [Expense](https://apis.io/schemas/concur/concur-expense-api-expense/)
+- [ExpenseReport](https://apis.io/schemas/concur/concur-expense-api-expense-report/)
+- [ExpenseCollection](https://apis.io/schemas/concur/concur-expensecollection/)
+- [ExpenseCreate](https://apis.io/schemas/concur/concur-expensecreate/)
+- [ExpenseReport](https://apis.io/schemas/concur/concur-expensereport/)
+- [ExpenseReportCollection](https://apis.io/schemas/concur/concur-expensereportcollection/)
+- [ExpenseReportCreate](https://apis.io/schemas/concur/concur-expensereportcreate/)
+- [SAP Concur Expense Report Schema](https://apis.io/schemas/concur/sap-concur-expense-report/)
 
-### SAP Concur Events API
-Event subscription API for real-time notifications.
+#### JSON Structure (3)
 
-### SAP Concur Lists API
-REST API for managing custom lists and list items.
+Data models expressed in JSON Structure.
 
-## Features
+- [Concur Expense Api Expense Report Structure](https://apis.io/json-structure/concur/concur-expense-api-expense-report-structure/)
+- [Concur Expense Api Expense Structure](https://apis.io/json-structure/concur/concur-expense-api-expense-structure/)
+- [Concur Structure](https://apis.io/json-structure/concur/concur-structure/)
 
-| Name | Description |
-|------|-------------|
-| Expense Report Management | Create, submit, and manage expense reports with approval workflows. |
-| Receipt Digitization | Capture and process digital receipts from merchants. |
-| Travel Booking Integration | Search and book travel through API-connected booking tools. |
-| Invoice Processing | Automate accounts payable workflows. |
-| Event Notifications | Real-time event subscriptions for status changes. |
-| SCIM User Provisioning | Standards-based user provisioning. |
+#### JSON-LD (2)
 
-## Use Cases
+Linked-data contexts for the provider's vocabulary.
 
-| Name | Description |
-|------|-------------|
-| ERP Integration | Integrate Concur expense data with ERP systems. |
-| Travel Management | Build travel booking integrations. |
-| Receipt Automation | Automatically capture and match digital receipts. |
-| Spend Analytics | Extract data for spend analytics and compliance reporting. |
-| Employee Onboarding | Automate Concur user provisioning. |
+- [Concur Context](https://apis.io/jsonld/concur/concur-context/)
+- [Sap Concur Context](https://apis.io/jsonld/concur/sap-concur-context/)
 
-## Integrations
+#### Vocabulary (1)
 
-| Name | Description |
-|------|-------------|
-| SAP S/4HANA | Financial posting integration for SAP ERP. |
-| SAP SuccessFactors | HR integration for employee data synchronization. |
-| Uber for Business | Automated ride receipt submission. |
-| Lyft | Ground transportation receipt integration. |
-| Microsoft Teams | Approval and notification integration. |
+The provider's domain terms, defined.
 
-## Artifacts
+- [Concur Vocabulary](https://apis.io/vocabularies/concur/concur-vocabulary/)
 
-Machine-readable API specifications organized by format.
+#### Examples (4)
 
-### OpenAPI
+Example requests and responses.
 
-- [concur-expense-api.yaml](openapi/concur-expense-api.yaml)
+- [Concur Createexpensereport Example](https://apis.io/examples/concur/concur-createexpensereport-example/)
+- [Concur Expense Api Expense Example](https://apis.io/examples/concur/concur-expense-api-expense-example/)
+- [Concur Expense Api Expense Report Example](https://apis.io/examples/concur/concur-expense-api-expense-report-example/)
+- [Concur Getexpensereports Example](https://apis.io/examples/concur/concur-getexpensereports-example/)
 
-### JSON Schema
+#### Collections (4)
 
-- [concur-expense-api-expense-report-schema.json](json-schema/concur-expense-api-expense-report-schema.json)
-- [concur-expense-api-expense-schema.json](json-schema/concur-expense-api-expense-schema.json)
+Postman and Open Collection request collections.
 
-### JSON Structure
+- [SAP Concur Expense Expense Reports API](https://apis.io/collections/concur/open-concur-expense-reports-api/)
+- [SAP Concur Expense Expense Reports Expenses API](https://apis.io/collections/concur/open-concur-expenses-api/)
+- [SAP Concur Expense Expense Reports API](https://apis.io/collections/concur/postman-concur-expense-reports-api/)
+- [SAP Concur Expense Expense Reports Expenses API](https://apis.io/collections/concur/postman-concur-expenses-api/)
 
-- [concur-expense-api-expense-report-structure.json](json-structure/concur-expense-api-expense-report-structure.json)
-- [concur-expense-api-expense-structure.json](json-structure/concur-expense-api-expense-structure.json)
+#### Governance rules (2)
 
-### JSON-LD
+Spectral rulesets for the provider's contracts.
 
-- [concur-context.jsonld](json-ld/concur-context.jsonld)
+- [SAP Concur — jsonschema rules](https://apis.io/rules/concur/concur-jsonschema-spectral-rules/)
+- [SAP Concur API Rules](https://apis.io/rules/concur/concur-spectral-rules/)
 
-### Examples
+#### Security (3)
 
-- [concur-expense-api-expense-report-example.json](examples/concur-expense-api-expense-report-example.json)
-- [concur-expense-api-expense-example.json](examples/concur-expense-api-expense-example.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-## Capabilities
+- [Concur Authentication](https://apis.io/security/concur/concur-authentication/)
+- [Concur Domain Security](https://apis.io/security/concur/concur-domain-security/)
+- [Concur Vulnerability Disclosure](https://apis.io/security/concur/concur-vulnerability-disclosure/)
 
-Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
+#### Plans and pricing (1)
 
-### Shared Per-API Definitions
+Published plans, tiers and prices.
 
-- [expense.yaml](capabilities/shared/expense.yaml)
+- [Concur Plans Pricing](https://apis.io/plans/concur/concur-plans-pricing/)
 
-### Workflow Capabilities
+#### Rate limits (1)
 
-- [spend-management.yaml](capabilities/spend-management.yaml)
+Published request limits.
 
-## Vocabulary
+- [Concur Rate Limits](https://apis.io/rate-limits/concur/concur-rate-limits/)
 
-- [concur-vocabulary.yaml](vocabulary/concur-vocabulary.yaml)
+#### FinOps (1)
 
-## Rules
+What the API costs to run, by operation.
 
-- [concur-spectral-rules.yml](rules/concur-spectral-rules.yml)
+- [Concur Finops](https://apis.io/finops/concur/concur-finops/)
 
-## Maintainers
+## Where to find this API
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.concur.com/)
+- [Documentation](https://developer.concur.com/api-reference/)
+- [Getting started](https://developer.concur.com/api-reference/getting-started.html)
+- [Pricing](https://www.concur.com/en-us/pricing)
+- [Support](https://developer.concur.com/tools-support/support.html)
+- [Changelog](https://developer.concur.com/tools-support/release-notes/)
+- [Blog](https://www.concur.com/blog)
+- [Terms of service](https://www.concur.com/en-us/terms-of-use)
+- [Privacy policy](https://www.concur.com/en-us/privacy-policy)
+- [GitHub](https://github.com/SAP/concur-platform)
+
+## API Evangelist rating
+
+**Kin Score 42.2** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 62.1 |
+| Contract governance | 13.6 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 46.4 |
+| Access clarity | 15.8 |
+
+**Agent readiness 23.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 26.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/concur/](https://apis.io/providers/concur/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for SAP Concur: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/concur/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
